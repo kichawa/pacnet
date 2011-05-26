@@ -1,0 +1,3 @@
+h2. Pacnet
+
+The purpose of the Pacnet project is to categorize packages from Arch Linux repositories according to categories that Gentoo Portage uses.
