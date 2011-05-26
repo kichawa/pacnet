@@ -1,1 +1,4 @@
 *.pyc
+database.db
+settings-locale.py
+site_media/*
