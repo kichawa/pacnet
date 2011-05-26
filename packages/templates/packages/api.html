@@ -1,0 +1,105 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block content %}
+
+	<h1>API	 {{ url }}</h1>
+	
+	<p>
+		<strong>[{% trans "PACKAGE"  %}]</strong> = firefox, gajim, mc ...<br/>
+		<strong>[{% trans "CATEGORY"  %}]</strong> = net-im, games-rpg ...<br/>
+		<strong>[{% trans "SEARCH"  %}]</strong> = aur, fire, ftp ...
+	</p>
+
+
+	<h2>{% trans "List of all packages"  %}</h2>
+	<dl>
+		<dt>URL:</dt>
+		<dd><pre><code>{{ site_url }}api/packages/</code></pre></dd>
+		
+		<dt>{% trans "Response"  %}:</dt>
+		<dd>
+			<pre><code>[
+	{"category__name": "x11-misc", "version": "0.2.9-2", "name": "3ddesktop", "description": "a 3d virtual desktop switcher (opengl/mesa)"}, 
+	{"category__name": "net-misc", "version": "0.11rc2-3", "name": "6tunnel", "description": "Tunnels IPv6 connections for IPv4-only applications"},
+	...
+]</code></pre>
+		</dd>
+	</dl>
+	
+	
+	<h2>{% trans "Info about package"  %}</h2>
+	<dl>
+		<dt>URL:</dt>
+		<dd><pre><code>{{ site_url }}api/package/<strong>[{% trans "PACKAGE"  %}]</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Example"  %}:</dt>
+		<dd><pre><code>{{ site_url }}api/package/<strong>firefox</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Response"  %}:</dt>
+		<dd>
+			<pre><code>{"www": "", "name": "firefox", "category__name": "www-client", "version": "3.0.8-1", "screenshots": [
+	{"mini": "http://images.google.com/images?q=tbn:7ldivybQZoLNuM:www.mozilla.com/en-US/img/press/screenshot-firefox-linux.png", "big": "http://www.mozilla.com/en-US/img/press/screenshot-firefox-linux.png"}, 
+	{"mini": "http://images.google.com/images?q=tbn:ZHjJdB38vK4NXM:images.betanews.com/screenshots/1032985422-6.png", "big": "http://images.betanews.com/screenshots/1032985422-6.png"}, 
+	{"mini": "http://images.google.com/images?q=tbn:soZIQndeETGdqM:brionews.com/pix/ss/test-firefox-linux.jpg", "big": "http://brionews.com/pix/ss/test-firefox-linux.jpg"}, 
+	{"mini": "http://images.google.com/images?q=tbn:MlAlqTOvOV4cCM:www.servertje.nl/stuff/wmspace.png", "big": "http://www.servertje.nl/stuff/wmspace.png"}
+], "description": "Standalone web browser from mozilla.org"}</code></pre>
+		</dd>
+	</dl>	
+	
+	
+	<h2>{% trans "List of all categories"  %}</h2>
+	<dl>
+		<dt>URL:</dt>
+		<dd><pre><code>{{ site_url }}api/categories/</code></pre></dd>
+		
+		<dt>{% trans "Response"  %}:</dt>
+		<dd>
+			<pre><code>[
+	{"name": "No"}, 
+	{"name": "app-accessibility"}, 
+	{"name": "app-admin"}, 
+	{"name": "app-antivirus"},
+	...
+]</code></pre>
+		</dd>
+	</dl>		
+	
+	
+	<h2>{% trans "List of packages in category"  %}</h2>
+	<dl>
+		<dt>URL:</dt>
+		<dd><pre><code>{{ site_url }}api/category/<strong>[{% trans "CATEGORY"  %}]</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Example"  %}:</dt>
+		<dd><pre><code>{{ site_url }}api/category/<strong>net-im</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Response"  %}:</dt>
+		<dd>
+			<pre><code>[
+	{"version": "0.97.2-10", "name": "amsn", "description": "MSN client written in Tcl/Tk"}, 
+	{"version": "1.2.3-1", "name": "bitlbee", "description": "An IRC to IM gateway. Supports MSN, ICQ, Jabber, Yahoo!, and"},
+	...
+]</code></pre>
+		</dd>
+	</dl>
+	
+	
+	<h2>{% trans "Search for packages"  %}</h2>
+	<dl>
+		<dt>URL:</dt>
+		<dd><pre><code>{{ site_url }}api/search/<strong>[{% trans "SEARCH"  %}]</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Example"  %}:</dt>
+		<dd><pre><code>{{ site_url }}api/search/<strong>worm</strong>/</code></pre></dd>
+		
+		<dt>{% trans "Response"  %}:</dt>
+		<dd>
+			<pre><code>[
+	{"category__name": "games-strategy", "version": "0.9.9-1", "name": "hedgewars", "description": "Free Worms-like turn based strategy game"}, 
+	{"category__name": "games-strategy", "version": "0.8.3-1", "name": "wormux", "description": "Wormux is a clone of the worms game"}
+]</code></pre>
+		</dd>
+	</dl>
+	
+{% endblock %}

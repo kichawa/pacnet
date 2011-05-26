@@ -1,0 +1,309 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#category_list li ul').hide();
+		$('#category_list li h3').click(function(){
+			$(this).toggleClass("selected").parent("li").children("ul").slideToggle("slow");
+			$(this).toggleClass("active");
+		});
+	});
+</script>
+{% endblock %}
+
+{% block content %}
+
+	<h1>{% trans "Categories"  %}</h1>
+	
+	
+	<p><a href="/category/No/" title="{% trans "Category"  %}: No">{% trans "No category"  %}</a></p>
+	
+	<ul id="category_list">
+		<li><h3>App</h3>
+			<ul class="main_category">
+				<li><a href="/category/app-accessibility/" title="{% trans "Category"  %}: app-accessibility">app-accessibility</a></li>
+				<li class="two"><a href="/category/app-admin/" title="{% trans "Category"  %}: app-admin">app-admin</a></li>
+				<li><a href="/category/app-antivirus/" title="{% trans "Category"  %}: app-antivirus">app-antivirus</a></li>
+				<li class="two"><a href="/category/app-arch/" title="{% trans "Category"  %}: app-arch">app-arch</a></li>
+
+				<li><a href="/category/app-backup/" title="{% trans "Category"  %}: app-backup">app-backup</a></li>
+				<li class="two"><a href="/category/app-benchmarks/" title="{% trans "Category"  %}: app-benchmarks">app-benchmarks</a></li>
+				<li><a href="/category/app-cdr/" title="{% trans "Category"  %}: app-cdr">app-cdr</a></li>
+				<li class="two"><a href="/category/app-crypt/" title="{% trans "Category"  %}: app-crypt">app-crypt</a></li>
+				<li><a href="/category/app-dicts/" title="{% trans "Category"  %}: app-dicts">app-dicts</a></li>
+				<li class="two"><a href="/category/app-doc/" title="{% trans "Category"  %}: app-doc">app-doc</a></li>
+
+				<li><a href="/category/app-editors/" title="{% trans "Category"  %}: app-editors">app-editors</a></li>
+				<li class="two"><a href="/category/app-emacs/" title="{% trans "Category"  %}: app-emacs">app-emacs</a></li>
+				<li><a href="/category/app-emulation/" title="{% trans "Category"  %}: app-emulation">app-emulation</a></li>
+				<li class="two"><a href="/category/app-forensics/" title="{% trans "Category"  %}: app-forensics">app-forensics</a></li>
+				<li><a href="/category/app-i18n/" title="{% trans "Category"  %}: app-i18n">app-i18n</a></li>
+				<li class="two"><a href="/category/app-laptop/" title="{% trans "Category"  %}: app-laptop">app-laptop</a></li>
+
+				<li><a href="/category/app-misc/" title="{% trans "Category"  %}: app-misc">app-misc</a></li>
+				<li class="two"><a href="/category/app-mobilephone/" title="{% trans "Category"  %}: app-mobilephone">app-mobilephone</a></li>
+				<li><a href="/category/app-office/" title="{% trans "Category"  %}: app-office">app-office</a></li>
+				<li class="two"><a href="/category/app-pacman/" title="{% trans "Category"  %}: app-portage">app-pacman</a></li>
+				<li><a href="/category/app-pda/" title="{% trans "Category"  %}: app-pda">app-pda</a></li>
+				<li class="two"><a href="/category/app-shells/" title="{% trans "Category"  %}: app-shells">app-shells</a></li>
+
+				<li><a href="/category/app-text/" title="{% trans "Category"  %}: app-text">app-text</a></li>
+				<li class="two"><a href="/category/app-vim/" title="{% trans "Category"  %}: app-vim">app-vim</a></li>
+				<li><a href="/category/app-xemacs/" title="{% trans "Category"  %}: app-xemacs">app-xemacs</a></li>
+			</ul>
+		</li>
+				
+		<li><h3>Dev</h3>
+			<ul class="main_category">
+
+				<li class="two"><a href="/category/dev-ada/" title="{% trans "Category"  %}: dev-ada">dev-ada</a></li>
+				<li><a href="/category/dev-cpp/" title="{% trans "Category"  %}: dev-cpp">dev-cpp</a></li>
+				<li class="two"><a href="/category/dev-db/" title="{% trans "Category"  %}: dev-db">dev-db</a></li>
+				<li><a href="/category/dev-dotnet/" title="{% trans "Category"  %}: dev-dotnet">dev-dotnet</a></li>
+				<li class="two"><a href="/category/dev-embedded/" title="{% trans "Category"  %}: dev-embedded">dev-embedded</a></li>
+				<li><a href="/category/dev-games/" title="{% trans "Category"  %}: dev-games">dev-games</a></li>
+
+				<li class="two"><a href="/category/dev-haskell/" title="{% trans "Category"  %}: dev-haskell">dev-haskell</a></li>
+				<li><a href="/category/dev-java/" title="{% trans "Category"  %}: dev-java">dev-java</a></li>
+				<li class="two"><a href="/category/dev-lang/" title="{% trans "Category"  %}: dev-lang">dev-lang</a></li>
+				<li><a href="/category/dev-libs/" title="{% trans "Category"  %}: dev-libs">dev-libs</a></li>
+				<li class="two"><a href="/category/dev-lisp/" title="{% trans "Category"  %}: dev-lisp">dev-lisp</a></li>
+				<li><a href="/category/dev-ml/" title="{% trans "Category"  %}: dev-ml">dev-ml</a></li>
+
+				<li class="two"><a href="/category/dev-perl/" title="{% trans "Category"  %}: dev-perl">dev-perl</a></li>
+				<li><a href="/category/dev-php/" title="{% trans "Category"  %}: dev-php">dev-php</a></li>
+				<li class="two"><a href="/category/dev-php4/" title="{% trans "Category"  %}: dev-php4">dev-php4</a></li>
+				<li><a href="/category/dev-php5/" title="{% trans "Category"  %}: dev-php5">dev-php5</a></li>
+				<li class="two"><a href="/category/dev-python/" title="{% trans "Category"  %}: dev-python">dev-python</a></li>
+				<li><a href="/category/dev-ruby/" title="{% trans "Category"  %}: dev-ruby">dev-ruby</a></li>
+
+				<li class="two"><a href="/category/dev-scheme/" title="{% trans "Category"  %}: dev-scheme">dev-scheme</a></li>
+				<li><a href="/category/dev-tcltk/" title="{% trans "Category"  %}: dev-tcltk">dev-tcltk</a></li>
+				<li class="two"><a href="/category/dev-tex/" title="{% trans "Category"  %}: dev-tex">dev-tex</a></li>
+				<li><a href="/category/dev-texlive/" title="{% trans "Category"  %}: dev-texlive">dev-texlive</a></li>
+				<li class="two"><a href="/category/dev-tinyos/" title="{% trans "Category"  %}: dev-tinyos">dev-tinyos</a></li>
+				<li><a href="/category/dev-util/" title="{% trans "Category"  %}: dev-util">dev-util</a></li>
+
+			</ul>
+		</li>
+			
+		<li><h3>Games</h3>
+			<ul class="main_category">	
+				<li class="two"><a href="/category/games-action/" title="{% trans "Category"  %}: games-action">games-action</a></li>
+				<li><a href="/category/games-arcade/" title="{% trans "Category"  %}: games-arcade">games-arcade</a></li>
+				<li class="two"><a href="/category/games-board/" title="{% trans "Category"  %}: games-board">games-board</a></li>
+
+				<li><a href="/category/games-emulation/" title="{% trans "Category"  %}: games-emulation">games-emulation</a></li>
+				<li class="two"><a href="/category/games-engines/" title="{% trans "Category"  %}: games-engines">games-engines</a></li>
+				<li><a href="/category/games-fps/" title="{% trans "Category"  %}: games-fps">games-fps</a></li>
+				<li class="two"><a href="/category/games-kids/" title="{% trans "Category"  %}: games-kids">games-kids</a></li>
+				<li><a href="/category/games-misc/" title="{% trans "Category"  %}: games-misc">games-misc</a></li>
+				<li class="two"><a href="/category/games-mud/" title="{% trans "Category"  %}: games-mud">games-mud</a></li>
+
+				<li><a href="/category/games-puzzle/" title="{% trans "Category"  %}: games-puzzle">games-puzzle</a></li>
+				<li class="two"><a href="/category/games-roguelike/" title="{% trans "Category"  %}: games-roguelike">games-roguelike</a></li>
+				<li><a href="/category/games-rpg/" title="{% trans "Category"  %}: games-rpg">games-rpg</a></li>
+				<li class="two"><a href="/category/games-server/" title="{% trans "Category"  %}: games-server">games-server</a></li>
+				<li><a href="/category/games-simulation/" title="{% trans "Category"  %}: games-simulation">games-simulation</a></li>
+				<li class="two"><a href="/category/games-sports/" title="{% trans "Category"  %}: games-sports">games-sports</a></li>
+
+				<li><a href="/category/games-strategy/" title="{% trans "Category"  %}: games-strategy">games-strategy</a></li>
+				<li class="two"><a href="/category/games-util/" title="{% trans "Category"  %}: games-util">games-util</a></li>
+			</ul>
+		</li>
+			
+		<li><h3>Gnome</h3>
+			<ul class="main_category">	
+				<li><a href="/category/gnome-base/" title="{% trans "Category"  %}: gnome-base">gnome-base</a></li>
+
+				<li class="two"><a href="/category/gnome-extra/" title="{% trans "Category"  %}: gnome-extra">gnome-extra</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Gnustep</h3>
+			<ul class="main_category">
+				<li><a href="/category/gnustep-apps/" title="{% trans "Category"  %}: gnustep-apps">gnustep-apps</a></li>
+				<li class="two"><a href="/category/gnustep-base/" title="{% trans "Category"  %}: gnustep-base">gnustep-base</a></li>
+
+				<li><a href="/category/gnustep-libs/" title="{% trans "Category"  %}: gnustep-libs">gnustep-libs</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Java</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/java-virtuals/" title="{% trans "Category"  %}: java-virtuals">java-virtuals</a></li>
+			</ul>
+
+		</li>
+			
+		<li><h3>KDE</h3>
+			<ul class="main_category">
+				<li><a href="/category/kde-base/" title="{% trans "Category"  %}: kde-base">kde-base</a></li>
+				<li class="two"><a href="/category/kde-misc/" title="{% trans "Category"  %}: kde-misc">kde-misc</a></li>
+			</ul>
+		</li>
+
+				
+		<li><h3>Mail</h3>
+			<ul class="main_category">
+				<li><a href="/category/mail-client/" title="{% trans "Category"  %}: mail-client">mail-client</a></li>
+				<li class="two"><a href="/category/mail-filter/" title="{% trans "Category"  %}: mail-filter">mail-filter</a></li>
+				<li><a href="/category/mail-mta/" title="{% trans "Category"  %}: mail-mta">mail-mta</a></li>
+			</ul>
+		</li>
+
+				
+		<li><h3>Media</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/media-fonts/" title="{% trans "Category"  %}: media-fonts">media-fonts</a></li>
+				<li><a href="/category/media-gfx/" title="{% trans "Category"  %}: media-gfx">media-gfx</a></li>
+				<li class="two"><a href="/category/media-libs/" title="{% trans "Category"  %}: media-libs">media-libs</a></li>
+				<li><a href="/category/media-plugins/" title="{% trans "Category"  %}: media-plugins">media-plugins</a></li>
+
+				<li class="two"><a href="/category/media-radio/" title="{% trans "Category"  %}: media-radio">media-radio</a></li>
+				<li><a href="/category/media-sound/" title="{% trans "Category"  %}: media-sound">media-sound</a></li>
+				<li class="two"><a href="/category/media-tv/" title="{% trans "Category"  %}: media-tv">media-tv</a></li>
+				<li><a href="/category/media-video/" title="{% trans "Category"  %}: media-video">media-video</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Net</h3>
+
+			<ul class="main_category">
+				<li class="two"><a href="/category/net-analyzer/" title="{% trans "Category"  %}: net-analyzer">net-analyzer</a></li>
+				<li><a href="/category/net-dialup/" title="{% trans "Category"  %}: net-dialup">net-dialup</a></li>
+				<li class="two"><a href="/category/net-dns/" title="{% trans "Category"  %}: net-dns">net-dns</a></li>
+				<li><a href="/category/net-firewall/" title="{% trans "Category"  %}: net-firewall">net-firewall</a></li>
+				<li class="two"><a href="/category/net-fs/" title="{% trans "Category"  %}: net-fs">net-fs</a></li>
+
+				<li><a href="/category/net-ftp/" title="{% trans "Category"  %}: net-ftp">net-ftp</a></li>
+				<li class="two"><a href="/category/net-im/" title="{% trans "Category"  %}: net-im">net-im</a></li>
+				<li><a href="/category/net-irc/" title="{% trans "Category"  %}: net-irc">net-irc</a></li>
+				<li class="two"><a href="/category/net-libs/" title="{% trans "Category"  %}: net-libs">net-libs</a></li>
+				<li><a href="/category/net-mail/" title="{% trans "Category"  %}: net-mail">net-mail</a></li>
+				<li class="two"><a href="/category/net-misc/" title="{% trans "Category"  %}: net-misc">net-misc</a></li>
+
+				<li><a href="/category/net-nds/" title="{% trans "Category"  %}: net-nds">net-nds</a></li>
+				<li class="two"><a href="/category/net-news/" title="{% trans "Category"  %}: net-news">net-news</a></li>
+				<li><a href="/category/net-nntp/" title="{% trans "Category"  %}: net-nntp">net-nntp</a></li>
+				<li class="two"><a href="/category/net-p2p/" title="{% trans "Category"  %}: net-p2p">net-p2p</a></li>
+				<li><a href="/category/net-print/" title="{% trans "Category"  %}: net-print">net-print</a></li>
+				<li class="two"><a href="/category/net-proxy/" title="{% trans "Category"  %}: net-proxy">net-proxy</a></li>
+
+				<li><a href="/category/net-voip/" title="{% trans "Category"  %}: net-voip">net-voip</a></li>
+				<li class="two"><a href="/category/net-wireless/" title="{% trans "Category"  %}: net-wireless">net-wireless</a></li>
+				<li><a href="/category/net-www/" title="{% trans "Category"  %}: net-www">net-www</a></li>
+				<li class="two"><a href="/category/net-zope/" title="{% trans "Category"  %}: net-zope">net-zope</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Perl</h3>
+
+			<ul class="main_category">
+				<li><a href="/category/perl-core/" title="{% trans "Category"  %}: perl-core">perl-core</a></li>
+			</ul>
+		</li>
+				
+		<li><h3>Rox</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/rox-base/" title="{% trans "Category"  %}: rox-base">rox-base</a></li>
+
+				<li><a href="/category/rox-extra/" title="{% trans "Category"  %}: rox-extra">rox-extra</a></li>
+			</ul>
+		</li>
+				
+		<li><h3>Sci</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/sci-astronomy/" title="{% trans "Category"  %}: sci-astronomy">sci-astronomy</a></li>
+				<li><a href="/category/sci-biology/" title="{% trans "Category"  %}: sci-biology">sci-biology</a></li>
+
+				<li class="two"><a href="/category/sci-calculators/" title="{% trans "Category"  %}: sci-calculators">sci-calculators</a></li>
+				<li><a href="/category/sci-chemistry/" title="{% trans "Category"  %}: sci-chemistry">sci-chemistry</a></li>
+				<li class="two"><a href="/category/sci-electronics/" title="{% trans "Category"  %}: sci-electronics">sci-electronics</a></li>
+				<li><a href="/category/sci-geosciences/" title="{% trans "Category"  %}: sci-geosciences">sci-geosciences</a></li>
+				<li class="two"><a href="/category/sci-libs/" title="{% trans "Category"  %}: sci-libs">sci-libs</a></li>
+				<li><a href="/category/sci-mathematics/" title="{% trans "Category"  %}: sci-mathematics">sci-mathematics</a></li>
+
+				<li class="two"><a href="/category/sci-misc/" title="{% trans "Category"  %}: sci-misc">sci-misc</a></li>
+				<li><a href="/category/sci-physics/" title="{% trans "Category"  %}: sci-physics">sci-physics</a></li>
+				<li class="two"><a href="/category/sci-visualization/" title="{% trans "Category"  %}: sci-visualization">sci-visualization</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Sec</h3>
+			<ul class="main_category">
+
+				<li><a href="/category/sec-policy/" title="{% trans "Category"  %}: sec-policy">sec-policy</a></li>
+			</ul>
+		</li>
+				
+		<li><h3>Sys</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/sys-apps/" title="{% trans "Category"  %}: sys-apps">sys-apps</a></li>
+				<li><a href="/category/sys-auth/" title="{% trans "Category"  %}: sys-auth">sys-auth</a></li>
+
+				<li class="two"><a href="/category/sys-block/" title="{% trans "Category"  %}: sys-block">sys-block</a></li>
+				<li><a href="/category/sys-boot/" title="{% trans "Category"  %}: sys-boot">sys-boot</a></li>
+				<li class="two"><a href="/category/sys-cluster/" title="{% trans "Category"  %}: sys-cluster">sys-cluster</a></li>
+				<li><a href="/category/sys-devel/" title="{% trans "Category"  %}: sys-devel">sys-devel</a></li>
+				<li class="two"><a href="/category/sys-freebsd/" title="{% trans "Category"  %}: sys-freebsd">sys-freebsd</a></li>
+				<li><a href="/category/sys-fs/" title="{% trans "Category"  %}: sys-fs">sys-fs</a></li>
+
+				<li class="two"><a href="/category/sys-kernel/" title="{% trans "Category"  %}: sys-kernel">sys-kernel</a></li>
+				<li><a href="/category/sys-libs/" title="{% trans "Category"  %}: sys-libs">sys-libs</a></li>
+				<li class="two"><a href="/category/sys-power/" title="{% trans "Category"  %}: sys-power">sys-power</a></li>
+				<li><a href="/category/sys-process/" title="{% trans "Category"  %}: sys-process">sys-process</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>Virtual</h3>
+
+			<ul class="main_category">
+				<li class="two"><a href="/category/virtual/" title="{% trans "Category"  %}: virtual">virtual</a></li>
+			</ul>
+		</li>
+		
+		<li><h3>WWW</h3>
+			<ul class="main_category">
+				<li><a href="/category/www-apache/" title="{% trans "Category"  %}: www-apache">www-apache</a></li>
+
+				<li class="two"><a href="/category/www-apps/" title="{% trans "Category"  %}: www-apps">www-apps</a></li>
+				<li><a href="/category/www-client/" title="{% trans "Category"  %}: www-client">www-client</a></li>
+				<li class="two"><a href="/category/www-misc/" title="{% trans "Category"  %}: www-misc">www-misc</a></li>
+				<li><a href="/category/www-servers/" title="{% trans "Category"  %}: www-servers">www-servers</a></li>
+			</ul>
+		</li>
+			
+		<li><h3>X11</h3>
+
+			<ul class="main_category">
+				<li class="two"><a href="/category/x11-apps/" title="{% trans "Category"  %}: x11-apps">x11-apps</a></li>
+				<li><a href="/category/x11-base/" title="{% trans "Category"  %}: x11-base">x11-base</a></li>
+				<li class="two"><a href="/category/x11-drivers/" title="{% trans "Category"  %}: x11-drivers">x11-drivers</a></li>
+				<li><a href="/category/x11-libs/" title="{% trans "Category"  %}: x11-libs">x11-libs</a></li>
+				<li class="two"><a href="/category/x11-misc/" title="{% trans "Category"  %}: x11-misc">x11-misc</a></li>
+
+				<li><a href="/category/x11-plugins/" title="{% trans "Category"  %}: x11-plugins">x11-plugins</a></li>
+				<li class="two"><a href="/category/x11-proto/" title="{% trans "Category"  %}: x11-proto">x11-proto</a></li>
+				<li><a href="/category/x11-terms/" title="{% trans "Category"  %}: x11-terms">x11-terms</a></li>
+				<li class="two"><a href="/category/x11-themes/" title="{% trans "Category"  %}: x11-themes">x11-themes</a></li>
+				<li><a href="/category/x11-wm/" title="{% trans "Category"  %}: x11-wm">x11-wm</a></li>
+			</ul>
+
+		</li>
+		
+		<li><h3>Xfce</h3>
+			<ul class="main_category">
+				<li class="two"><a href="/category/xfce-base/" title="{% trans "Category"  %}: xfce-base">xfce-base</a></li>
+				<li><a href="/category/xfce-extra/" title="{% trans "Category"  %}: xfce-extra">xfce-extra</a></li>
+			</ul>
+		</li>
+
+	</ul>
+		
+
+
+
+{% endblock %}

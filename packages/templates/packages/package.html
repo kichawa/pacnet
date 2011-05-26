@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block content %}
+
+	<h1>
+		<a href="/category/">{% trans "Categories"  %}</a> &raquo; 
+		<a href="/category/{{ package.category }}">{{ package.category }}</a> &raquo; 
+		{{ package.name }}
+	</h1>
+	
+	<p id="change_category">
+		<a href="/package/{{ package.name }}/change-category/" class="sprite-edit">{% trans "Change category"  %}</a>
+	</p>
+	
+	<h2>{% trans "Description" %}</h2>
+	<p>{{ package.description }}</p>
+	
+	<h2>{% trans "Version" %}</h2>
+	<p>{{ package.version }}</p>
+	{% if package.changelog %}
+		<p><a href="{{ package.changelog }}">{% trans "See changelog" %}</a></p>
+	{% endif %}
+	
+	{% if package.www %}
+		<h2>{% trans "Homepage" %}</h2>
+		<p><a href="{{ package.www }}">{{ package.www }}</a></p>
+	{% endif %}
+	
+	<h2>{% trans "Install" %}</h2>
+	<p><pre><code># pacman -S {{ package.name }}</code></pre></p>
+	
+	<h2>{% trans "Screenshots" %}</h2>
+	{% if screenshots %}
+	<p id="screenshots">
+		{% for s in screenshots %}
+			<a href="{{ s.big }}"><img src="{{ s.mini }}" /></a>
+		{% endfor %}
+	</p>
+	{% else %}
+		<p>{% trans "No screenshots :-(" %}</p>
+	{% endif %}
+	<p><a href="http://images.google.com/images?q={{ package.name }} linux">{% trans "Find more screenshots" %} &raquo;</a></p>
+	
+
+{% endblock %}

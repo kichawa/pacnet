@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block css %}
+<style type="text/css">
+#change_category {
+	position: relative;
+	top: -20px;
+}
+</style>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".package_list small").hide();
+		$("#change_category a").click(function(){
+			$(".package_list small").toggle();
+		});
+	});
+</script>
+{% endblock %}
+
+{% block content %}
+
+	<h1>{% trans "New packages"  %}</h1>
+	
+	<p id="change_category">
+		<a href="#" class="sprite-edit">{% trans "Change category"  %}</a>
+	</p>
+	
+	<dl class="package_list">
+		{% for p in packages %}
+		<dt>
+			<a href="/package/{{ p.name }}/">{{ p.name }}</a>
+			[<a href="/category/{{ p.category }}/" class="category">{{ p.category }}</a>]
+			<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
+		</dt>
+		<dd>{{ p.description }}</dd>
+		{% endfor %}
+	</dl>
+	
+{% endblock %}

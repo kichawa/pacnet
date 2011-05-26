@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block content %}
+
+	<h1>{% trans "History"  %}</h1>
+	
+	{% for h in object_list %}
+		{% ifchanged %}<h2>{{ h.insert_time|date:"d.m.Y" }}</h2>{% endifchanged %}
+		<p class="package_list">
+			<a href="/package/{{ h.package }}/">{{ h.package }}</a> 
+			[<a href="/category/{{ h.category_from }}" class="category">{{ h.category_from }}</a> &raquo; <a href="/category/{{ h.category_to }}" class="category">{{ h.category_to }}</a>]
+		</p>
+	{% endfor %}
+
+	{% for page in page_range %}
+		{% ifequal current_page page %}
+			<strong>{{ page }}</strong>
+		{% else %}
+			<a href="/history/?page={{ page }}">{{ page }}</a>
+		{% endifequal %}
+	{% endfor %}
+	
+{% endblock %}

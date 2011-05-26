@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block content %}
+
+	<h1><a href="/package/{{ package.name }}/">{{ package.name }}</a> &raquo; {% trans "Change category"  %}</h1>
+	
+	<form action="." method="post">
+		{{ form }}
+		{% csrf_token %}
+		<input type="submit" value="{% trans "Save"  %}" />
+	</form>
+
+{% endblock %}

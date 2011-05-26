@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block content %}
+
+	{% blocktrans %}
+	<h1>What's this ?</h1>
+	<p>The purpose of the Pacnet project is to categorize packages from Arch Linux repositories according to categories that Gentoo Portage uses. As for now, there are over 4000 packages from core, extra and community repositories (i686).</p>
+	<p>If you noticed, that some of packages are in the wrong category, feel free to change it. Packages were categorized by script that searched for each package on gentoo-portage.com website, so there could be some mistakes due to names incompatibility between Arch Linux and Gentoo.</p>
+	<p>I hope that with your help we'll put that in order, so the site could be useful for everyone.</p>
+	{% endblocktrans %}
+
+{% endblock %}
