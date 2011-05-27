@@ -1,18 +1,6 @@
 {% extends "main.html" %}
 {% load i18n %}
 
-{% block js %}
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#category_list li ul').hide();
-		$('#category_list li h3').click(function(){
-			$(this).toggleClass("selected").parent("li").children("ul").slideToggle("slow");
-			$(this).toggleClass("active");
-		});
-	});
-</script>
-{% endblock %}
-
 {% block content %}
 
 	<h1>{% trans "Categories"  %}</h1>
@@ -303,7 +291,5 @@
 
 	</ul>
 		
-
-
 
 {% endblock %}

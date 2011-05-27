@@ -24,13 +24,12 @@ h2 { margin-top: 30px; }
 h2.search { padding-left: 10px; border-bottom: 1px solid #CCC; color: #F5BB04;}
 	
 #content {	margin: 20px 15%; }
+#content a:hover { color: #CC0000; text-decoration: underline; }
 #footer { margin-top: 100px; text-align: center; line-height: 15px;}
 pre { background-color: #F9F9F9; border: 1px dashed #8FAECD; padding: 10px 15px; font-family: sans-serif;	letter-spacing: 1px; overflow: auto;}
 
-#category_list { list-style: none; margin: 0 auto; }
-#category_list h3 { width: 150px; background-color: #333333; color: #FFF;	margin: 0;	padding: 3px 3px 3px 10px;	cursor: pointer; }
-#category_list h3:hover {background-color: #1793D1;}
-#category_list h3.active {background-color: #1793D1;}
+#category_list { list-style: none; margin: 0 auto; -moz-column-count: 4; -moz-column-gap: 2em; -moz-column-rule: 1px solid #CCC; -webkit-column-count: 4; -webkit-column-gap: 2em; -webkit-column-rule: 1px solid #CCC; }
+#category_list h3 { width: 150px; background-color: #333; color: #FFF; margin: 0; padding: 3px 3px 3px 10px; }
 #category_list .main_category {margin: 5px 0 15px 0;padding: 0 0 0 10px;list-style: none;}
 #category_list .main_category li {margin: 0;padding: 0 0 0 20px;background: url(../img/icons.png) 0 -528px no-repeat;line-height: 30px;}
 
