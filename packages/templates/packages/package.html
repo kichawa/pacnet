@@ -1,6 +1,28 @@
 {% extends "main.html" %}
 {% load i18n %}
 
+{% block css %}
+<style type="text/css">
+	.search-control { width : auto;	font-size:0.9em; color:#777;}
+	/*---- Override existing Google Image Search Layout----------- **/
+	.gs-text-box, .gsc-tabhActive, .gs-watermark, .gsc-branding, .gsc-twiddle, .gsc-stats, .gsc-results-selector, .gsc-all-results-active{display:none;}
+	/*-----Search Box---*/
+	.gsc-input input{width: 300px;}
+	/*-----Image ---*/
+	img.gs-image{float:left; margin:10px 10px 20px 0px; width:80px; height:80px; border:5px solid #fff; padding:1px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+	img.gs-image:hover{border:5px solid #aaa;}
+	img.selectImage{float:left; margin:10px 10px 20px 0px; width:90px; height:80px; border:5px solid #aaa; padding:1px; -moz-border-radius:4px; -webkit-border-radius:4px;}
+	/*--Paging---**/
+	.gsc-cursor-page{float:left; text-shadow: 1px 1px 1px #fff; cursor: pointer; margin: 0px 8px 10px 0px; padding: 3px 7px 3px 7px; background: #ddd; color:#000; border:1px solid #999; -moz-border-radius:2px; -webkit-border-radius:2px;}
+	.gsc-cursor-page:hover{ background: #fff; color:#333;}
+	.gsc-cursor-current-page{background: #fff; color:#333;}
+	/****Demo Page Formatting****/
+	.clear{clear: both;}
+	/**** Result Image ****/
+	#imageContainer img{padding:1px; border:1px solid #ddd; width: auto; height: auto;}
+</style>
+{% endblock %}
+
 {% block content %}
 
 	<h1>
@@ -31,18 +53,13 @@
 	<p><pre><code># pacman -S {{ package.name }}</code></pre></p>
 	
 	<h2>{% trans "Screenshots" %}</h2>
-	{% if screenshots %}
-	<p id="screenshots">
-		{% for s in screenshots %}
-			<a href="{{ s.big }}"><img src="{{ s.mini }}" /></a>
-		{% endfor %}
-	</p>
-	{% else %}
-		<p>{% trans "No screenshots :-(" %}</p>
-	{% endif %}
-	<p><a href="http://images.google.com/images?q={{ package.name }} linux">{% trans "Find more screenshots" %} &raquo;</a></p>
+    <div id="imgSearchControl" class="search-control">Loading...</div>
+    <!--Remove all floating-->
+    <div class="clear"></div>
+    <!--Image will be shown here-->
+    <div id='imageContainer'></div>
 	
-	
+	<h2>{% trans "Comments" %}</h2>
 	<div id="disqus_thread"></div>
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
@@ -50,7 +67,56 @@
 
 
 {% block js %}
+
+	<script src="http://www.google.com/jsapi?key=ABQIAAAA8A1uIO-UYELXwCsQ_ysLzxTvAUMZhqEoO3FakeLTcBvwQNb9iBRIbHA2VLnRtKOrCNrK41hIfGbVFQ" type="text/javascript"></script>
 	<script type="text/javascript">
+		
+		google.load("search", "1", {"nocss" : true});
+		
+		// function will bind event to all images
+		function bind_event(){
+			$("a.gs-image").bind("click", function(e){
+				$("#imageContainer").html('<img src="' + $(this).attr('href') + '" alt="Loading Image..." />');
+				$("a.gs-image img").removeClass();
+				$("a.gs-image img").addClass("gs-image");
+				$(this).find("img").removeClass();
+				$(this).find("img").addClass("selectImage");
+				if($(".gs-imageResult").length <= 0){
+					$("#gsearchErr").css("display","block");
+				}else{
+					$("#gsearchErr").css("display","none");
+				}          
+				return false;
+			});
+			$("div.gsc-cursor").prepend("<div class='clear' style='margin-top:10px;clear:both;'></div>");
+			$(".gsc-trailing-more-results").css("display","none");
+		}
+
+		// the se class encapsulates a left and right search control
+		// both controls are driven by a shared search form
+		$(document).ready(function(){
+			// create a tabbed mode search control
+			var tabbed = new google.search.SearchControl();        
+			//restrict results: search only moderated
+			//tabbed.setRestriction(google.search.RESTRICT_SAFESEARCH, google.search.SAFESEARCH_STRICT);
+			// Set the Search Control to get the most number of results
+			tabbed.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+			// create image searchers.
+			tabbed.addSearcher(new google.search.ImageSearch());
+			// proprofscc: On search completeion
+			tabbed.setSearchCompleteCallback(this, bind_event);
+			// draw in tabbed layout mode
+			var drawOptions = new google.search.DrawOptions();
+			drawOptions.setDrawMode(google.search.SearchControl.DRAW_MODE_TABBED);
+			// Draw the tabbed view in the content div
+			tabbed.draw(document.getElementById("imgSearchControl"), drawOptions);
+			// Search!
+			tabbed.execute("{{ package.name }} linux");
+		});
+
+		
+		
+		// Disqus comments
 		var disqus_shortname = 'pacnet';
 		var disqus_identifier = '{{ a.name }}';
 		var disqus_url = '{{ a.get_absolute_url }}';
@@ -59,5 +125,7 @@
 			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
 			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 		})();
+		
 	</script>
+	
 {% endblock %}
