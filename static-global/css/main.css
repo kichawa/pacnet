@@ -17,182 +17,63 @@
 #submenu ul li a:hover { border-bottom: 1px solid #FFF; }
 #submenu #search { float: right; margin-right: 20px; }
 
-* {
-	font-family: Verdana,sans-serif;
-}
-
-body {
-	font-size: 12px;
-	margin: 0;
-	background: #FFF url(/site_media/img/logo.png) 30px 5px no-repeat;
-	color: #444;
-	line-height: 22px;
-}
-
-a {
-	text-decoration: none;
-	color: #1793D1;
-}
-
-h1 {
-	font-size: 26px;
-	line-height: 30px;
-}
-
-h2 {
-	margin-top: 30px;
-}
-
-h2.search {
-	padding-left: 10px;
-	border-bottom: 1px solid #CCC;
-	color: #F5BB04;
-}
-
-
-
+body {	font-size: 12px; margin: 0; background: #FFF url(../img/logo.png) 30px 5px no-repeat; color: #444; line-height: 22px; font-family: Verdana,sans-serif; }
+a {	text-decoration: none; color: #1793D1; }
+h1 { font-size: 26px; line-height: 30px; }
+h2 { margin-top: 30px; }
+h2.search { padding-left: 10px; border-bottom: 1px solid #CCC; color: #F5BB04;}
 	
-#content {
-	margin: 20px 15%;
-}
+#content {	margin: 20px 15%; }
+#footer { margin-top: 100px; text-align: center; line-height: 15px;}
+pre { background-color: #F9F9F9; border: 1px dashed #8FAECD; padding: 10px 15px; font-family: sans-serif;	letter-spacing: 1px; overflow: auto;}
 
-#footer {
-	margin-top: 100px;
-	text-align: center;
-	line-height: 15px;
-}
+#category_list { list-style: none; margin: 0 auto; }
+#category_list h3 { width: 150px; background-color: #333333; color: #FFF;	margin: 0;	padding: 3px 3px 3px 10px;	cursor: pointer; }
+#category_list h3:hover {background-color: #1793D1;}
+#category_list h3.active {background-color: #1793D1;}
+#category_list .main_category {margin: 5px 0 15px 0;padding: 0 0 0 10px;list-style: none;}
+#category_list .main_category li {margin: 0;padding: 0 0 0 20px;background: url(../img/icons.png) 0 -528px no-repeat;line-height: 30px;}
 
-pre {
-	background-color: #F9F9F9;
-	border: 1px dashed #8FAECD;
-	padding: 10px 15px;
-	font-family: sans-serif;
-	letter-spacing: 1px;
-	overflow: auto;
-}
+.package_list dt,p.package_list {background: url(../img/icons.png) 0 -950px no-repeat;padding: 0 0 0 25px;font-weight: bold;}
+.package_list dd {margin-bottom: 10px;}
+.package_list small,.package_list small a {font-size: 10px;color: #CCC;}
 
-#screenshots img {
-	height: 100px;
-}
+#change_category {float: right;}
 
-#category_list {
-	list-style: none;
-	margin: 0 auto;
-}
+a.category {color: #CF8C27 !important;}
+highlight { background-color: yellow }
 
-	#category_list h3 {
-		width: 150px;
-		background-color: #333333;
-		color: #FFF;
-		margin: 0;
-		padding: 3px 3px 3px 10px;
-		cursor: pointer;
-	}
-	
-	#category_list h3:hover {
-		background-color: #1793D1;
-	}
-	
-	#category_list h3.active {
-		background-color: #1793D1;
-	}
-	
-	
-	#category_list .main_category {
-		margin: 5px 0 15px 0;
-		padding: 0 0 0 10px;
-		list-style: none;
-	}
-	
-	#category_list .main_category li {
-		margin: 0;
-		padding: 0 0 0 20px;
-		background: url(/site_media/img/icons.png) 0 -528px no-repeat;
-		line-height: 30px;
-	}
-
-.package_list dt,
-p.package_list {
-	background: url(/site_media/img/icons.png) 0 -950px no-repeat;
-	padding: 0 0 0 25px;
-	font-weight: bold;
-}
-
-.package_list dd {
-	margin-bottom: 10px;
-}
-
-.package_list small,
-.package_list small a {
-	font-size: 10px;
-	color: #CCC;
-}
-
-#change_category {
-	float: right;
-}
-
-.comment_form label {
-	display: block;
-}
-
-a.category {
-	color: #CF8C27 !important;
-}
-
-#comments .content {
-	background-color: #F5F5F5;
-	padding: 10px 20px;
-	border-bottom: 2px solid #E8E8E8;
-}
-
-#comments .metadata {
-	margin-left: 20px;
-	margin-bottom: 15px;
-	color: #999;
-	font-size: 10px;
-	
-}
-
-	#comments .metadata cite {
-		background-color: #E8E8E8;
-		color: #444;
-		padding: 5px 10px;
-		font-size: 12px;
-	}
-
-.highlight { background-color: yellow }
 
 /* ################# Icons ################# */
 
-.sprite-add { background: url(/site_media/img/icons.png)  0 -30px no-repeat;padding-left:20px}
-.sprite-back { background: url(/site_media/img/icons.png)  0 -76px no-repeat;padding-left:20px}
-.sprite-config { background: url(/site_media/img/icons.png)  0 -122px no-repeat;padding-left:20px}
-.sprite-delete { background: url(/site_media/img/icons.png)  0 -168px no-repeat;padding-left:20px}
-.sprite-done { background: url(/site_media/img/icons.png)  0 -214px no-repeat;padding-left:20px}
-.sprite-down { background: url(/site_media/img/icons.png)  0 -260px no-repeat;padding-left:20px}
-.sprite-edit { background: url(/site_media/img/icons.png)  0 -306px no-repeat;padding-left:20px}
-.sprite-error { background: url(/site_media/img/icons.png)  0 -352px no-repeat;padding-left:20px}
-.sprite-faq { background: url(/site_media/img/icons.png)  0 -398px no-repeat;padding-left:20px}
-.sprite-favorite { background: url(/site_media/img/icons.png)  0 -444px no-repeat;padding-left:20px}
-.sprite-file { background: url(/site_media/img/icons.png)  0 -490px no-repeat;padding-left:20px}
-.sprite-folder { background: url(/site_media/img/icons.png)  0 -536px no-repeat;padding-left:20px}
-.sprite-home { background: url(/site_media/img/icons.png)  0 -582px no-repeat;padding-left:20px}
-.sprite-image { background: url(/site_media/img/icons.png)  0 -628px no-repeat;padding-left:20px}
-.sprite-important { background: url(/site_media/img/icons.png)  0 -674px no-repeat;padding-left:20px}
-.sprite-information { background: url(/site_media/img/icons.png)  0 -720px no-repeat;padding-left:20px}
-.sprite-lock { background: url(/site_media/img/icons.png)  0 -766px no-repeat;padding-left:20px}
-.sprite-mail { background: url(/site_media/img/icons.png)  0 -812px no-repeat;padding-left:20px}
-.sprite-new { background: url(/site_media/img/icons.png)  0 -858px no-repeat;padding-left:20px}
-.sprite-next { background: url(/site_media/img/icons.png)  0 -904px no-repeat;padding-left:20px}
-.sprite-package { background: url(/site_media/img/icons.png)  0 -950px no-repeat;padding-left:20px}
-.sprite-play { background: url(/site_media/img/icons.png)  0 -996px no-repeat;padding-left:20px}
-.sprite-previous { background: url(/site_media/img/icons.png)  0 -1042px no-repeat;padding-left:20px}
-.sprite-record { background: url(/site_media/img/icons.png)  0 -1088px no-repeat;padding-left:20px}
-.sprite-refresh { background: url(/site_media/img/icons.png)  0 -1134px no-repeat;padding-left:20px}
-.sprite-remove { background: url(/site_media/img/icons.png)  0 -1180px no-repeat;padding-left:20px}
-.sprite-save { background: url(/site_media/img/icons.png)  0 -1226px no-repeat;padding-left:20px}
-.sprite-stop { background: url(/site_media/img/icons.png)  0 -1272px no-repeat;padding-left:20px}
-.sprite-up { background: url(/site_media/img/icons.png)  0 -1318px no-repeat;padding-left:20px}
-.sprite-warning { background: url(/site_media/img/icons.png)  0 -1364px no-repeat;padding-left:20px}
-.sprite-web { background: url(/site_media/img/icons.png)  0 -1410px no-repeat;padding-left:20px}
+.sprite-add { background: url(../img/icons.png)  0 -30px no-repeat;padding-left:20px}
+.sprite-back { background: url(../img/icons.png)  0 -76px no-repeat;padding-left:20px}
+.sprite-config { background: url(../img/icons.png)  0 -122px no-repeat;padding-left:20px}
+.sprite-delete { background: url(../img/icons.png)  0 -168px no-repeat;padding-left:20px}
+.sprite-done { background: url(../img/icons.png)  0 -214px no-repeat;padding-left:20px}
+.sprite-down { background: url(../img/icons.png)  0 -260px no-repeat;padding-left:20px}
+.sprite-edit { background: url(../img/icons.png)  0 -306px no-repeat;padding-left:20px}
+.sprite-error { background: url(../img/icons.png)  0 -352px no-repeat;padding-left:20px}
+.sprite-faq { background: url(../img/icons.png)  0 -398px no-repeat;padding-left:20px}
+.sprite-favorite { background: url(../img/icons.png)  0 -444px no-repeat;padding-left:20px}
+.sprite-file { background: url(../img/icons.png)  0 -490px no-repeat;padding-left:20px}
+.sprite-folder { background: url(../img/icons.png)  0 -536px no-repeat;padding-left:20px}
+.sprite-home { background: url(../img/icons.png)  0 -582px no-repeat;padding-left:20px}
+.sprite-image { background: url(../img/icons.png)  0 -628px no-repeat;padding-left:20px}
+.sprite-important { background: url(../img/icons.png)  0 -674px no-repeat;padding-left:20px}
+.sprite-information { background: url(../img/icons.png)  0 -720px no-repeat;padding-left:20px}
+.sprite-lock { background: url(../img/icons.png)  0 -766px no-repeat;padding-left:20px}
+.sprite-mail { background: url(../img/icons.png)  0 -812px no-repeat;padding-left:20px}
+.sprite-new { background: url(../img/icons.png)  0 -858px no-repeat;padding-left:20px}
+.sprite-next { background: url(../img/icons.png)  0 -904px no-repeat;padding-left:20px}
+.sprite-package { background: url(../img/icons.png)  0 -950px no-repeat;padding-left:20px}
+.sprite-play { background: url(../img/icons.png)  0 -996px no-repeat;padding-left:20px}
+.sprite-previous { background: url(../img/icons.png)  0 -1042px no-repeat;padding-left:20px}
+.sprite-record { background: url(../img/icons.png)  0 -1088px no-repeat;padding-left:20px}
+.sprite-refresh { background: url(../img/icons.png)  0 -1134px no-repeat;padding-left:20px}
+.sprite-remove { background: url(../img/icons.png)  0 -1180px no-repeat;padding-left:20px}
+.sprite-save { background: url(../img/icons.png)  0 -1226px no-repeat;padding-left:20px}
+.sprite-stop { background: url(../img/icons.png)  0 -1272px no-repeat;padding-left:20px}
+.sprite-up { background: url(../img/icons.png)  0 -1318px no-repeat;padding-left:20px}
+.sprite-warning { background: url(../img/icons.png)  0 -1364px no-repeat;padding-left:20px}
+.sprite-web { background: url(../img/icons.png)  0 -1410px no-repeat;padding-left:20px}
