@@ -15,17 +15,17 @@ urlpatterns = patterns('',
 	
 	(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 	
-    (r'^history/$', 'packages.views.history'),
+    url(r'^history/$', 'packages.views.history', name='history'),
 	
-    (r'^category/$', 'packages.views.categories'),
-	(r'^category/(?P<category_name>[a-zA-Z0-9-]+)/$', 'packages.views.category'),
+    url(r'^category/$', 'packages.views.categories', name='categories'),
+	url(r'^category/(?P<category_name>[a-zA-Z0-9-]+)/$', 'packages.views.category', name='category'),
 	
-	(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/$', 'packages.views.package'),
-	(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/change-category/$', 'packages.views.change_category'),
+	url(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/$', 'packages.views.package', name='package'),
+	url(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/change-category/$', 'packages.views.change_category', name='package-category-change'),
 	
-	(r'^new-packages/$', 'packages.views.new_packages'),
+	url(r'^new-packages/$', 'packages.views.new_packages', name='new-packages'),
 	
-	(r'^search/$', 'packages.views.package_search'),
+	url(r'^search/$', 'packages.views.package_search', name='search'),
 	
 	(r'^api/tosync/', 'packages.views.api_to_sync'),
 	(r'^api/categories/', 'packages.views.api_categories'),
@@ -35,7 +35,6 @@ urlpatterns = patterns('',
 	(r'^api/search/(?P<search>[a-zA-Z0-9-]+)/$', 'packages.views.api_search'),
 	(r'^api/$', 'packages.views.api'),
     
-    
     (r'^/?$', direct_to_template, {'template': 'main-page.html'}),
 )
 
@@ -43,6 +42,6 @@ urlpatterns = patterns('',
 if settings.DEBUG:
 	urlpatterns += patterns('',
 		url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {
-			'document_root': settings.MEDIA_ROOT,
+			'document_root': settings.STATIC_ROOT,
 		}),
    )

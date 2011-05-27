@@ -6,19 +6,6 @@ from django.views.generic.list_detail import object_list
 
 from packages.models import Package, Category
 
-def last_comments(request):
-	
-	comments = Comment.objects.all().order_by('-submit_date').extra(
-			select={
-				"package": "SELECT p.name FROM packages_package p WHERE p.id = django_comments.object_pk::int"
-			},
-		)
-	
-	return object_list(request,comments,paginate_by = 10,extra_context = {}, template_name = 'other/last-comments.html')
-
-	
-
-
 class PackageSitemap(Sitemap):
 	changefreq = "weekly"
 	priority = 0.5
@@ -28,6 +15,7 @@ class PackageSitemap(Sitemap):
 		
 	def location(self, obj):
 		return "/package/%s/" % obj.name
+
 		
 class CategorySitemap(Sitemap):
 	changefreq = "weekly"

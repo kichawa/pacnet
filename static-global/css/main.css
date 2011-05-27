@@ -24,7 +24,7 @@ h2 { margin-top: 30px; }
 h2.search { padding-left: 10px; border-bottom: 1px solid #CCC; color: #F5BB04;}
 	
 #content {	margin: 20px 15%; }
-#content a:hover { color: #CC0000; text-decoration: underline; }
+#content a:hover, #footer a:hover { color: #CC0000; text-decoration: underline; }
 #footer { margin-top: 100px; text-align: center; line-height: 15px;}
 pre { background-color: #F9F9F9; border: 1px dashed #8FAECD; padding: 10px 15px; font-family: sans-serif;	letter-spacing: 1px; overflow: auto;}
 
