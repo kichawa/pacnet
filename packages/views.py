@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import urllib
+import sys
+import json
+
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
@@ -12,8 +16,7 @@ from django.views.generic.list_detail import object_list
 from packages.models import *
 from settings import SITE_URL
 
-import urllib
-import sys
+
 
 def categories(request):
 	
@@ -128,13 +131,15 @@ def api_to_sync(request):
 	
 	packages = Package.objects.all().order_by('id')
 	
-	response = HttpResponse()
-
+	out = []
 	for p in packages:
-		response.write("%s;%s;%s\n" % (p.id,p.name,p.version))
-
-	return response
-
+		out.append({
+			'id': p.id,
+			'name': p.name,
+			'version': p.version
+		})
+		
+	return HttpResponse(json.dumps(out), mimetype="text/javascript")
 
 def api_categories(request):
 	

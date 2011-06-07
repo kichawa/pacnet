@@ -30,7 +30,7 @@ class Pacnet(object):
 		''' Get versions of packages from pacnet database '''
 		
 		#~ result = urllib.request.urlopen("http://pacnet.archlinux.pl/api/tosync/").read()
-		result = urllib.request.urlopen("http://192.168.1.3:8000/api/tosync/").read()
+		result = urllib.request.urlopen("http://pacnet.archlinux.pl/api/tosync/").read()
 		packages = json.loads(result.decode('utf-8'))
 
 		package_dict = {}
