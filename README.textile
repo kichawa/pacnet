@@ -4,6 +4,19 @@ The purpose of the Pacnet project is to categorize packages from Arch Linux repo
 
 website: "pacnet.archlinux.pl":http://pacnet.archlinux.pl/
 
+**Features**
+
+* portage-like categories
+* clean and simple interface
+* searchbox
+* ability to change the package category
+* list of newly added packages
+* log of changes categories
+* API
+* Disqus comments (JavaScript)
+* Screenshots for each package (JavaScript)
+
+
 h2. Requirements
 
 **For running webapp**
@@ -14,6 +27,8 @@ h2. Requirements
 
 **For updating package database**
 
+* Arch Linux - simple & lightweight Linux distribution
+* Python 3 - type(snake)
 * python-pyalpm - Libalpm bindings for Python 3
 * python-pyquery - A jQuery-like library for Python
 

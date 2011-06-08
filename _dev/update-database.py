@@ -177,8 +177,8 @@ if __name__ == '__main__':
 	# search for deleted packages
 	for pkg in pacnet:
 		if pkg not in pacman:
-			print("\033[1;33m%s\033[0m" % package)
-			app.delete(package)
+			print("\033[1;33m%s\033[0m" % pkg)
+			app.delete(pkg)
 			
 	print("Sending file to server...")
 	command = ["./update.sh"]
