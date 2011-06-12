@@ -46,7 +46,7 @@ def category(request, category_name):
 
 def package(request,package_name):
 	
-	package = Package.objects.get(name=package_name)
+	package = get_object_or_404(Package, name=package_name)
 	
 	return render_to_response('packages/package.html', { 
 		'package': package,
