@@ -189,11 +189,11 @@ if __name__ == '__main__':
 			print("\033[1;33m%s\033[0m" % pkg)
 			app.delete(pkg)
 			
-	#~ print("Sending file to server...")
-	#~ command = ["./update.sh"]
-	#~ out, errors = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-	#~ if errors:
-		#~ print('[E] Error while sending SQL file')
+	print("Sending file to server...")
+	command = ["./update.sh"]
+	out, errors = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+	if errors:
+		print('[E] Error while sending SQL file')
 
 	print("Done")
 
