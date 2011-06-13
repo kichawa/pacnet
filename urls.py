@@ -35,7 +35,7 @@ urlpatterns = patterns('',
 	(r'^api/search/(?P<search>[a-zA-Z0-9-]+)/$', 'packages.views.api_search'),
 	(r'^api/$', 'packages.views.api'),
     
-    (r'^/?$', direct_to_template, {'template': 'main-page.html'}),
+    (r'^/?$', 'packages.views.main_page'),
 )
 
 

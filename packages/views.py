@@ -14,12 +14,21 @@ from django.utils import simplejson
 from django.db.models import Q
 from django.core import serializers
 from django.views.generic.list_detail import object_list
-
 	
 from packages.models import *
 from settings import SITE_URL
 
 
+def main_page(request):
+	
+	new = Package.objects.all().order_by('-id')[:5]
+	random = Package.objects.all().order_by('?')[:5]
+	
+	return render_to_response('main-page.html', { 
+		'new': new,
+		'random': random
+	}, context_instance=RequestContext(request))
+	
 
 def categories(request):
 	
