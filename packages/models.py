@@ -20,6 +20,7 @@ class Category(models.Model):
 	class Meta:
 		verbose_name="Kategoria"
 		verbose_name_plural="Kategorie"
+		ordering = ['name']
 		
 class CategoryForm(forms.ModelForm):	
 	class Meta:
@@ -51,7 +52,7 @@ class Package(models.Model):
 	name = models.CharField(max_length=70, verbose_name="Name")
 	category =  models.ForeignKey(Category)
 	version = models.CharField(max_length=30, verbose_name="Wersion")
-	www = models.CharField(max_length=100, verbose_name="Home site")
+	www = models.CharField(max_length=150, verbose_name="Home site")
 	changelog = models.CharField(max_length=100, verbose_name="Changelog")
 	description = models.TextField(verbose_name="Description")
 	arch = models.CharField(max_length=6, verbose_name='Arch', choices=ARCH_CHOICES)

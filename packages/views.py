@@ -23,7 +23,9 @@ from settings import SITE_URL
 
 def categories(request):
 	
-	categories = Category.objects.all().order_by('name')
+	categories = Category.objects.all()
+	for a in categories:
+		a.section = a.name.split('-')[0]
 	
 	return render_to_response('packages/categories.html', { 
 		'categories': categories 

@@ -107,6 +107,10 @@ class Pacnet(object):
 			if pkg:
 				break
 		desc = self.addslashes(pkg.desc)
+		try:
+			url = pkg.url
+		except:
+			url = ''
 			
 		# find portage category in portage
 		portage = self.portage(package)
@@ -114,7 +118,7 @@ class Pacnet(object):
 		print("\033[1;31m%s %s [%s]\033[0m" % (package, version, portage))
 
 		# generete SQL INSERT
-		self.log("INSERT INTO packages_package (name,category_id,version,www,description,arch,repo,update_time,insert_time,changelog) VALUES ('"+package+"',(SELECT id FROM packages_category WHERE name='"+portage+"'), '"+version+"', '"+pkg.url+"', E'"+desc+"','i686','', NOW(),NOW(),'')")
+		self.log("INSERT INTO packages_package (name,category_id,version,www,description,arch,repo,update_time,insert_time,changelog) VALUES ('"+package+"',(SELECT id FROM packages_category WHERE name='"+portage+"'), '"+version+"', '"+url+"', E'"+desc+"','i686','', NOW(),NOW(),'')")
 
 		# find changelog
 		self.changelog(package)
@@ -130,10 +134,15 @@ class Pacnet(object):
 				break
 		desc = self.addslashes(pkg.desc)
 		
-		print("%s \033[34m%s\033[0m \033[33m=>\033[0m \033[32m%s\033[0m www: %s" % (package, pacnet_version, pacman_version, pkg.url))
+		try:
+			url = pkg.url
+		except:
+			url = ''
+
+		print("%s \033[34m%s\033[0m \033[33m=>\033[0m \033[32m%s\033[0m www: %s" % (package, pacnet_version, pacman_version, url))
 		
 		# generete SQL UPDATE
-		self.log("UPDATE packages_package SET description=E'"+desc+"', www=E'"+pkg.url+"', version='"+str(pacman_version)+"' WHERE id='"+str(id)+"'")
+		self.log("UPDATE packages_package SET description=E'"+desc+"', www=E'"+url+"', version='"+str(pacman_version)+"' WHERE id='"+str(id)+"'")
 		
 		# find changelog
 		self.changelog(package)
@@ -180,11 +189,11 @@ if __name__ == '__main__':
 			print("\033[1;33m%s\033[0m" % pkg)
 			app.delete(pkg)
 			
-	print("Sending file to server...")
-	command = ["./update.sh"]
-	out, errors = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-	if errors:
-		print('[E] Error while sending SQL file')
+	#~ print("Sending file to server...")
+	#~ command = ["./update.sh"]
+	#~ out, errors = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+	#~ if errors:
+		#~ print('[E] Error while sending SQL file')
 
 	print("Done")
 

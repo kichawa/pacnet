@@ -9,6 +9,17 @@
 	<p><a href="/category/No/" title="{% trans "Category"  %}: No">{% trans "No category"  %}</a></p>
 	
 	<ul id="category_list">
+	{% for a in categories %}
+		{% if a.name != "No" %}
+			{% ifchanged %}
+				<li><h3>{{ a.section}}</h3></li>
+			{% endifchanged %}
+			<li class="cat"><a href="{{ a.get_absolute_url }}" title="{% trans "Category"  %}: {{ a.category }}">{{ a }}</a></li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+	
+	<ul id="category_list" style="display:none">
 		<li><h3>App</h3>
 			<ul class="main_category">
 				<li><a href="/category/app-accessibility/" title="{% trans "Category"  %}: app-accessibility">app-accessibility</a></li>
