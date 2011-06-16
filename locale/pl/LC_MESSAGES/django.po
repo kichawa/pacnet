@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-04 21:45+0200\n"
+"POT-Creation-Date: 2011-06-16 21:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,302 +17,152 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/main.html:37
-msgid "Search"
-msgstr "Szukaj"
-
-#: templates/main.html:44
-msgid "Discussion"
-msgstr "Dyskusja"
-
-#: templates/main.html:46 templates/packages/history.html:6
-msgid "History"
-msgstr "Historia"
-
-#: templates/main.html:47 templates/packages/new-packages.html:26
-msgid "New packages"
-msgstr "Nowe pakiety"
-
-#: templates/main.html:48 templates/packages/categories.html:18
-#: templates/packages/category.html:26 templates/packages/package.html:8
-msgid "Categories"
-msgstr "Kategorie"
-
-#: templates/main.html:49
-msgid "Home"
-msgstr "Start"
-
-#: templates/other/last-comments.html:6
-msgid "Last comments"
-msgstr "Ostatnie komentarze"
-
-#: templates/other/last-comments.html:17 templates/packages/package.html:58
-msgid "Edit"
-msgstr "Edycja"
-
-#: templates/other/last-comments.html:26
-msgid "Previous"
-msgstr "Poprzednie"
-
-#: templates/other/last-comments.html:29
-msgid "Next"
-msgstr "Następne"
-
-#: templates/packages/api.html:9 templates/packages/api.html.py:34
+#: packages/templates/packages/api.html:9
+#: packages/templates/packages/api.html:34
 msgid "PACKAGE"
 msgstr "PAKIET"
 
-#: templates/packages/api.html:10 templates/packages/api.html.py:72
+#: packages/templates/packages/api.html:10
+#: packages/templates/packages/api.html:72
 msgid "CATEGORY"
 msgstr "KATEGORIA"
 
-#: templates/packages/api.html:11 templates/packages/api.html.py:91
+#: packages/templates/packages/api.html:11
+#: packages/templates/packages/api.html:91
 msgid "SEARCH"
 msgstr "SZUKAJ"
 
-#: templates/packages/api.html:15
+#: packages/templates/packages/api.html:15
 msgid "List of all packages"
 msgstr "Lista wszystkich pakietów"
 
-#: templates/packages/api.html:20 templates/packages/api.html.py:39
-#: templates/packages/api.html:56 templates/packages/api.html.py:77
-#: templates/packages/api.html:96
+#: packages/templates/packages/api.html:20
+#: packages/templates/packages/api.html:39
+#: packages/templates/packages/api.html:56
+#: packages/templates/packages/api.html:77
+#: packages/templates/packages/api.html:96
 msgid "Response"
 msgstr "Odpowiedź"
 
-#: templates/packages/api.html:31
+#: packages/templates/packages/api.html:31
 msgid "Info about package"
 msgstr "Informacje o pakiecie"
 
-#: templates/packages/api.html:36 templates/packages/api.html.py:74
-#: templates/packages/api.html:93
+#: packages/templates/packages/api.html:36
+#: packages/templates/packages/api.html:74
+#: packages/templates/packages/api.html:93
 msgid "Example"
 msgstr "Przykład"
 
-#: templates/packages/api.html:51
+#: packages/templates/packages/api.html:51
 msgid "List of all categories"
 msgstr "Lista wszystkich kategorii"
 
-#: templates/packages/api.html:69
+#: packages/templates/packages/api.html:69
 msgid "List of packages in category"
 msgstr "Lista pakietów w kategorii"
 
-#: templates/packages/api.html:88
+#: packages/templates/packages/api.html:88
 msgid "Search for packages"
 msgstr "Wyszukiwanie pakietu"
 
-#: templates/packages/categories.html:21 templates/packages/categories.html:26
-#: templates/packages/categories.html:27 templates/packages/categories.html:28
-#: templates/packages/categories.html:29 templates/packages/categories.html:31
-#: templates/packages/categories.html:32 templates/packages/categories.html:33
-#: templates/packages/categories.html:34 templates/packages/categories.html:35
-#: templates/packages/categories.html:36 templates/packages/categories.html:38
-#: templates/packages/categories.html:39 templates/packages/categories.html:40
-#: templates/packages/categories.html:41 templates/packages/categories.html:42
-#: templates/packages/categories.html:43 templates/packages/categories.html:45
-#: templates/packages/categories.html:46 templates/packages/categories.html:47
-#: templates/packages/categories.html:48 templates/packages/categories.html:49
-#: templates/packages/categories.html:50 templates/packages/categories.html:52
-#: templates/packages/categories.html:53 templates/packages/categories.html:54
-#: templates/packages/categories.html:61 templates/packages/categories.html:62
-#: templates/packages/categories.html:63 templates/packages/categories.html:64
-#: templates/packages/categories.html:65 templates/packages/categories.html:66
-#: templates/packages/categories.html:68 templates/packages/categories.html:69
-#: templates/packages/categories.html:70 templates/packages/categories.html:71
-#: templates/packages/categories.html:72 templates/packages/categories.html:73
-#: templates/packages/categories.html:75 templates/packages/categories.html:76
-#: templates/packages/categories.html:77 templates/packages/categories.html:78
-#: templates/packages/categories.html:79 templates/packages/categories.html:80
-#: templates/packages/categories.html:82 templates/packages/categories.html:83
-#: templates/packages/categories.html:84 templates/packages/categories.html:85
-#: templates/packages/categories.html:86 templates/packages/categories.html:87
-#: templates/packages/categories.html:94 templates/packages/categories.html:95
-#: templates/packages/categories.html:96 templates/packages/categories.html:98
-#: templates/packages/categories.html:99
-#: templates/packages/categories.html:100
-#: templates/packages/categories.html:101
-#: templates/packages/categories.html:102
-#: templates/packages/categories.html:103
-#: templates/packages/categories.html:105
-#: templates/packages/categories.html:106
-#: templates/packages/categories.html:107
-#: templates/packages/categories.html:108
-#: templates/packages/categories.html:109
-#: templates/packages/categories.html:110
-#: templates/packages/categories.html:112
-#: templates/packages/categories.html:113
-#: templates/packages/categories.html:119
-#: templates/packages/categories.html:121
-#: templates/packages/categories.html:127
-#: templates/packages/categories.html:128
-#: templates/packages/categories.html:130
-#: templates/packages/categories.html:136
-#: templates/packages/categories.html:143
-#: templates/packages/categories.html:144
-#: templates/packages/categories.html:151
-#: templates/packages/categories.html:152
-#: templates/packages/categories.html:153
-#: templates/packages/categories.html:160
-#: templates/packages/categories.html:161
-#: templates/packages/categories.html:162
-#: templates/packages/categories.html:163
-#: templates/packages/categories.html:165
-#: templates/packages/categories.html:166
-#: templates/packages/categories.html:167
-#: templates/packages/categories.html:168
-#: templates/packages/categories.html:175
-#: templates/packages/categories.html:176
-#: templates/packages/categories.html:177
-#: templates/packages/categories.html:178
-#: templates/packages/categories.html:179
-#: templates/packages/categories.html:181
-#: templates/packages/categories.html:182
-#: templates/packages/categories.html:183
-#: templates/packages/categories.html:184
-#: templates/packages/categories.html:185
-#: templates/packages/categories.html:186
-#: templates/packages/categories.html:188
-#: templates/packages/categories.html:189
-#: templates/packages/categories.html:190
-#: templates/packages/categories.html:191
-#: templates/packages/categories.html:192
-#: templates/packages/categories.html:193
-#: templates/packages/categories.html:195
-#: templates/packages/categories.html:196
-#: templates/packages/categories.html:197
-#: templates/packages/categories.html:198
-#: templates/packages/categories.html:205
-#: templates/packages/categories.html:211
-#: templates/packages/categories.html:213
-#: templates/packages/categories.html:219
-#: templates/packages/categories.html:220
-#: templates/packages/categories.html:222
-#: templates/packages/categories.html:223
-#: templates/packages/categories.html:224
-#: templates/packages/categories.html:225
-#: templates/packages/categories.html:226
-#: templates/packages/categories.html:227
-#: templates/packages/categories.html:229
-#: templates/packages/categories.html:230
-#: templates/packages/categories.html:231
-#: templates/packages/categories.html:238
-#: templates/packages/categories.html:244
-#: templates/packages/categories.html:245
-#: templates/packages/categories.html:247
-#: templates/packages/categories.html:248
-#: templates/packages/categories.html:249
-#: templates/packages/categories.html:250
-#: templates/packages/categories.html:251
-#: templates/packages/categories.html:252
-#: templates/packages/categories.html:254
-#: templates/packages/categories.html:255
-#: templates/packages/categories.html:256
-#: templates/packages/categories.html:257
-#: templates/packages/categories.html:264
-#: templates/packages/categories.html:270
-#: templates/packages/categories.html:272
-#: templates/packages/categories.html:273
-#: templates/packages/categories.html:274
-#: templates/packages/categories.html:275
-#: templates/packages/categories.html:282
-#: templates/packages/categories.html:283
-#: templates/packages/categories.html:284
-#: templates/packages/categories.html:285
-#: templates/packages/categories.html:286
-#: templates/packages/categories.html:288
-#: templates/packages/categories.html:289
-#: templates/packages/categories.html:290
-#: templates/packages/categories.html:291
-#: templates/packages/categories.html:292
-#: templates/packages/categories.html:299
-#: templates/packages/categories.html:300
+#: packages/templates/packages/categories.html:6
+#: packages/templates/packages/category.html:26
+#: packages/templates/packages/package.html:29 templates/main.html:76
+msgid "Categories"
+msgstr "Kategorie"
+
+#: packages/templates/packages/categories.html:8
+#: packages/templates/packages/categories.html:16
 msgid "Category"
 msgstr "Kategorie"
 
-#: templates/packages/categories.html:21
+#: packages/templates/packages/categories.html:8
 msgid "No category"
 msgstr "Brak kategorii"
 
-#: templates/packages/category.html:29 templates/packages/category.html:36
-#: templates/packages/change-category.html:6
-#: templates/packages/new-packages.html:29
-#: templates/packages/new-packages.html:37 templates/packages/package.html:14
-#: templates/packages/search.html:37 templates/packages/search.html.py:51
-#: templates/packages/search.html:74
+#: packages/templates/packages/category.html:29
+#: packages/templates/packages/category.html:36
+#: packages/templates/packages/change-category.html:6
+#: packages/templates/packages/new-packages.html:29
+#: packages/templates/packages/new-packages.html:37
+#: packages/templates/packages/package.html:35
+#: packages/templates/packages/search.html:37
+#: packages/templates/packages/search.html:51
+#: packages/templates/packages/search.html:74
 msgid "Change category"
 msgstr "Zmień kategorię"
 
-#: templates/packages/change-category.html:10
+#: packages/templates/packages/change-category.html:11
 msgid "Save"
 msgstr "Zapisz"
 
-#: templates/packages/package.html:17 templates/packages/search.html:65
+#: packages/templates/packages/history.html:6 templates/main.html:78
+msgid "History"
+msgstr "Historia"
+
+#: packages/templates/packages/new-packages.html:26
+#: templates/main-page.html:16 templates/main.html:77
+msgid "New packages"
+msgstr "Nowe pakiety"
+
+#: packages/templates/packages/package.html:38
+#: packages/templates/packages/search.html:65
 msgid "Description"
 msgstr "Opis"
 
-#: templates/packages/package.html:20
+#: packages/templates/packages/package.html:41
 msgid "Version"
 msgstr "Wersja"
 
-#: templates/packages/package.html:23
+#: packages/templates/packages/package.html:44
 msgid "See changelog"
 msgstr "Zobacz dziennik zmian"
 
-#: templates/packages/package.html:27
+#: packages/templates/packages/package.html:48
 msgid "Homepage"
 msgstr "Strona domowa"
 
-#: templates/packages/package.html:31
+#: packages/templates/packages/package.html:52
 msgid "Install"
 msgstr "Instalacja"
 
-#: templates/packages/package.html:34
+#: packages/templates/packages/package.html:55
 msgid "Screenshots"
 msgstr "Zrzuty ekranu"
 
-#: templates/packages/package.html:42
-msgid "No screenshots :-("
-msgstr "Brak zrzutów :-("
-
-#: templates/packages/package.html:44
-msgid "Find more screenshots"
-msgstr "Znajdź więcej zrzutów"
-
-#: templates/packages/package.html:47
+#: packages/templates/packages/package.html:62
 msgid "Comments"
 msgstr "Komentarze"
 
-#: templates/packages/package.html:64
-msgid "No comments"
-msgstr "Brak komentarzy"
-
-#: templates/packages/package.html:67
-msgid "Add comment"
-msgstr "Dodaj komentarz"
-
-#: templates/packages/search.html:31
+#: packages/templates/packages/search.html:31
 msgid "Insert at least 3 chars"
 msgstr "Wpisz co najmniej 3 znaki"
 
-#: templates/packages/search.html:35
+#: packages/templates/packages/search.html:35
 msgid "Search results"
 msgstr "Wyniki wyszukiwania"
 
-#: templates/packages/search.html:42
+#: packages/templates/packages/search.html:42
 msgid "Name"
 msgstr "Nazwa"
 
-#: templates/packages/search.html:59 templates/packages/search.html.py:82
+#: packages/templates/packages/search.html:59
+#: packages/templates/packages/search.html:82
 msgid "Nothing found"
 msgstr "Znaleziono nic"
 
-#: templates/stuff/main_page.html:6
+#: templates/404.html:5
+msgid "No such page"
+msgstr "Nie ma takiej strony"
+
+#: templates/main-page.html:6
 msgid ""
 "\n"
 "\t<h1>What's this ?</h1>\n"
 "\t<p>The purpose of the Pacnet project is to categorize packages from Arch "
 "Linux repositories according to categories that Gentoo Portage uses. As for "
-"now, there are over 4000 packages from core, extra and community "
+"now, there are over 5000 packages from core, extra and community "
 "repositories (i686).</p>\n"
 "\t<p>If you noticed, that some of packages are in the wrong category, feel "
 "free to change it. Packages were categorized by script that searched for "
@@ -326,7 +176,7 @@ msgstr ""
 "\t<h1>Co to jest ?</h1>\n"
 "\t<p>Pacnet jest próbą kategoryzacji pakietów z repozytoriów Arch Linuksa "
 "zgodnie z kategoriami używanymi przez Gentoo Portage. Na chwilę obecną "
-"znajduje się tutaj ponad 4000 pakietów z repozytoriów core, extra i "
+"znajduje się tutaj ponad 5000 pakietów z repozytoriów core, extra i "
 "community (i686). </p>\n"
 "\t<p>Jeżeli zauważycie, że jakiś pakiet znajduje się w niewłaściwej "
 "kategorii nie czujcie się skrępowani żeby ją zmienić. Pakiety kategoryzowane "
@@ -336,3 +186,27 @@ msgstr ""
 "\t<p>Liczę na to, że z Waszą pomocą doprowadzimy szybko to repozytorium do "
 "porządku i co najważniejsze - przydatności.</p>\n"
 "\t"
+
+#: templates/main-page.html:26
+msgid "Full list"
+msgstr "Pełna lista"
+
+#: templates/main-page.html:30
+msgid "Do you know these packages?"
+msgstr "Znasz te pakiety?"
+
+#: templates/main.html:75
+msgid "Home"
+msgstr "Start"
+
+#: templates/main.html:80
+msgid "Discussion"
+msgstr "Dyskusja"
+
+#: templates/main.html:87
+msgid "Search"
+msgstr "Szukaj"
+
+#: templates/main.html:106
+msgid "Last update"
+msgstr "Ostatnia aktualizacja"

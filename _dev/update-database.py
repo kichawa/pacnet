@@ -190,7 +190,8 @@ if __name__ == '__main__':
 			app.delete(pkg)
 			
 	print("Sending file to server...")
-	command = ["./update.sh"]
+	# you need to create your own script to handle updating database
+	command = ["/bin/sh","update.sh"] 
 	out, errors = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 	if errors:
 		print('[E] Error while sending SQL file')
