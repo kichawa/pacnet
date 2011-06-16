@@ -3,3 +3,4 @@ database.db
 settings-locale.py
 site_media/*
 _dev/update*
+templates/last-update.txt
