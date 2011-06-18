@@ -70,6 +70,7 @@ class Package(models.Model):
 	class Meta:
 		verbose_name="Package"
 		verbose_name_plural="Packages"
+		ordering = ('name',)
 		
 class PackageForm(forms.ModelForm):	
 	class Meta:
