@@ -75,19 +75,6 @@
 		
 		// function will bind event to all images
 		function bind_event(){
-			$("a.gs-image").bind("click", function(e){
-				$("#imageContainer").html('<img src="' + $(this).attr('href') + '" alt="Loading Image..." />');
-				$("a.gs-image img").removeClass();
-				$("a.gs-image img").addClass("gs-image");
-				$(this).find("img").removeClass();
-				$(this).find("img").addClass("selectImage");
-				if($(".gs-imageResult").length <= 0){
-					$("#gsearchErr").css("display","block");
-				}else{
-					$("#gsearchErr").css("display","none");
-				}          
-				return false;
-			});
 			$("div.gsc-cursor").prepend("<div class='clear' style='margin-top:10px;clear:both;'></div>");
 			$(".gsc-trailing-more-results").css("display","none");
 		}

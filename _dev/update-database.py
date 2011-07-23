@@ -89,11 +89,14 @@ class Pacnet(object):
 	def portage(self, package):
 		''' Search for package category at http://gentoo-portage.com/ '''
 		
-		html = pq(url="http://gentoo-portage.com/Search?search=%s" % package)
-		if len(html('#search_results a')) == 0:
-			category = "No"
-		else:
-			category = html('#search_results a').attr('href').split('/')[1]
+		category = "No"
+		
+		try:
+			html = pq(url="http://gentoo-portage.com/Search?search=%s" % package)
+			if len(html('#search_results a')) != 0:
+				category = html('#search_results a').attr('href').split('/')[1]
+		except:
+			pass
 			
 		return category
 
