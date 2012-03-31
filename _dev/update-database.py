@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pyalpm
+#~ import pyalpm
+from pycman.config import init_with_config
 import os
 import json
 import urllib.request
@@ -15,11 +16,8 @@ class Pacnet(object):
 	def __init__(self):
 		''' Initialize pyalpm '''
 		
-		self.pyalpm = pyalpm
-		self.pyalpm.initialize()
-		self.pyalpm.options.root = "/"
-		self.pyalpm.options.dbpath = "/var/lib/pacman"
-		self.localdb = self.pyalpm.get_localdb()
+		handle = init_with_config("/etc/pacman.conf")
+		self.localdb = handle.get_localdb()
 
 		# delete old SQL file if exist	
 		if os.path.isfile("update.sql"):
@@ -29,7 +27,6 @@ class Pacnet(object):
 	def pacnet_db(self):
 		''' Get versions of packages from pacnet database '''
 		
-		#~ result = urllib.request.urlopen("http://pacnet.archlinux.pl/api/tosync/").read()
 		result = urllib.request.urlopen("http://pacnet.archlinux.pl/api/tosync/").read()
 		packages = json.loads(result.decode('utf-8'))
 
@@ -45,19 +42,13 @@ class Pacnet(object):
 	def pacman_db(self):
 		''' Get versions of packages from pacman database '''
 		
-		self.pyalpm.register_syncdb("core")
-		self.pyalpm.register_syncdb("extra")
-		self.pyalpm.register_syncdb("community")
-		self.repos = self.pyalpm.get_syncdbs()
-		
 		package_dict = {}
 		
 		# search packages in all repos
-		for repo in self.repos:
-			for pkg in repo.pkgcache:
-				# creating new dictionary with package name as key
-				# format: 'epdfview': {'version': '0.13.49-2'}
-				package_dict[pkg.name] = {'version': pkg.version}
+		for pkg in self.localdb.pkgcache:
+			# creating new dictionary with package name as key
+			# format: 'epdfview': {'version': '0.13.49-2'}
+			package_dict[pkg.name] = {'version': pkg.version}
 			
 		return package_dict
 	
@@ -105,10 +96,7 @@ class Pacnet(object):
 		''' Generete SQL insert command '''
 
 		# search for package
-		for repo in self.repos:
-			pkg = repo.get_pkg(package)
-			if pkg:
-				break
+		pkg = self.localdb.get_pkg(package)
 		desc = self.addslashes(pkg.desc)
 		try:
 			url = pkg.url
@@ -131,10 +119,7 @@ class Pacnet(object):
 		''' Generete SQL update command '''
 		
 		# search for package
-		for repo in self.repos:
-			pkg = repo.get_pkg(package)
-			if pkg:
-				break
+		pkg = self.localdb.get_pkg(package)
 		desc = self.addslashes(pkg.desc)
 		
 		try:
