@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#~ import pyalpm
 from pycman.config import init_with_config
+from pycman.action_sync import find_sync_package
 import os
 import json
 import urllib.request
@@ -17,6 +17,7 @@ class Pacnet(object):
 		''' Initialize pyalpm '''
 		
 		handle = init_with_config("/etc/pacman.conf")
+		self.repos = handle.get_syncdbs()
 		self.localdb = handle.get_localdb()
 
 		# delete old SQL file if exist	
@@ -45,10 +46,12 @@ class Pacnet(object):
 		package_dict = {}
 		
 		# search packages in all repos
-		for pkg in self.localdb.pkgcache:
-			# creating new dictionary with package name as key
-			# format: 'epdfview': {'version': '0.13.49-2'}
-			package_dict[pkg.name] = {'version': pkg.version}
+		for repo in self.repos:
+			if repo.name in ['core', 'extra', 'community']:
+				for pkg in repo.pkgcache:
+					# creating new dictionary with package name as key
+					# format: 'epdfview': {'version': '0.13.49-2'}
+					package_dict[pkg.name] = {'version': pkg.version}
 			
 		return package_dict
 	
@@ -96,44 +99,50 @@ class Pacnet(object):
 		''' Generete SQL insert command '''
 
 		# search for package
-		pkg = self.localdb.get_pkg(package)
-		desc = self.addslashes(pkg.desc)
-		try:
-			url = pkg.url
-		except:
-			url = ''
-			
-		# find portage category in portage
-		portage = self.portage(package)
+		repos = dict((db.name,db) for db in self.repos)
+		ok, pkg = find_sync_package(package, repos)
+		
+		if ok:
+			desc = self.addslashes(pkg.desc)
+			try:
+				url = pkg.url
+			except:
+				url = ''
+				
+			# find portage category in portage
+			portage = self.portage(package)
 
-		print("\033[1;31m%s %s [%s]\033[0m" % (package, version, portage))
+			print("\033[1;31m%s %s [%s]\033[0m" % (package, version, portage))
 
-		# generete SQL INSERT
-		self.log("INSERT INTO packages_package (name,category_id,version,www,description,arch,repo,update_time,insert_time,changelog) VALUES ('"+package+"',(SELECT id FROM packages_category WHERE name='"+portage+"'), '"+version+"', '"+url+"', E'"+desc+"','i686','', NOW(),NOW(),'')")
+			# generete SQL INSERT
+			self.log("INSERT INTO packages_package (name,category_id,version,www,description,arch,repo,update_time,insert_time,changelog) VALUES ('"+package+"',(SELECT id FROM packages_category WHERE name='"+portage+"'), '"+version+"', '"+url+"', E'"+desc+"','i686','', NOW(),NOW(),'')")
 
-		# find changelog
-		self.changelog(package)
+			# find changelog
+			self.changelog(package)
 			
 		
 	def update(self, package, pacman_version, id, pacnet_version):
 		''' Generete SQL update command '''
 		
 		# search for package
-		pkg = self.localdb.get_pkg(package)
-		desc = self.addslashes(pkg.desc)
+		repos = dict((db.name,db) for db in self.repos)
+		ok, pkg = find_sync_package(package, repos)
 		
-		try:
-			url = pkg.url
-		except:
-			url = ''
+		if ok:
+			desc = self.addslashes(pkg.desc)
+			
+			try:
+				url = pkg.url
+			except:
+				url = ''
 
-		print("%s \033[34m%s\033[0m \033[33m=>\033[0m \033[32m%s\033[0m www: %s" % (package, pacnet_version, pacman_version, url))
-		
-		# generete SQL UPDATE
-		self.log("UPDATE packages_package SET description=E'"+desc+"', www=E'"+url+"', version='"+str(pacman_version)+"' WHERE id='"+str(id)+"'")
-		
-		# find changelog
-		self.changelog(package)
+			print("%s \033[34m%s\033[0m \033[33m=>\033[0m \033[32m%s\033[0m www: %s" % (package, pacnet_version, pacman_version, url))
+			
+			# generete SQL UPDATE
+			self.log("UPDATE packages_package SET description=E'"+desc+"', www=E'"+url+"', version='"+str(pacman_version)+"' WHERE id='"+str(id)+"'")
+			
+			# find changelog
+			self.changelog(package)
 		
 		
 	def log(self,sql):
