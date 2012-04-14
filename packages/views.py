@@ -157,8 +157,9 @@ def api_to_sync(request):
 
 def api_categories(request):
 	
-	data = Category.objects.all().order_by('name')
-	json = serializers.serialize("json", data)
+	data = Category.objects.all().order_by('name').values('name')
+	data = list(data)
+	json = simplejson.dumps(data)
 	
 	return HttpResponse(json, mimetype="text/javascript")
 	
