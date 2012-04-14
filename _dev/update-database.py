@@ -81,14 +81,14 @@ class Pacnet(object):
 
 
 	def portage(self, package):
-		''' Search for package category at http://gentoo-portage.com/ '''
+		''' Search for package category at http://packages.gentoo.org/ '''
 		
 		category = "No"
 		
 		try:
-			html = pq(url="http://gentoo-portage.com/Search?search=%s" % package)
-			if len(html('#search_results a')) != 0:
-				category = html('#search_results a').attr('href').split('/')[1]
+			html = pq(url="http://packages.gentoo.org/package/%s" % package)
+			if len(html('.package a')) == 1:
+				category = html('.package a').attr('href').split('/')[2]
 		except:
 			pass
 			
@@ -104,9 +104,9 @@ class Pacnet(object):
 		
 		if ok:
 			desc = self.addslashes(pkg.desc)
-			try:
+			if pkg.url:
 				url = pkg.url
-			except:
+			else:
 				url = ''
 				
 			# find portage category in portage
@@ -131,9 +131,9 @@ class Pacnet(object):
 		if ok:
 			desc = self.addslashes(pkg.desc)
 			
-			try:
+			if pkg.url:
 				url = pkg.url
-			except:
+			else:
 				url = ''
 
 			print("%s \033[34m%s\033[0m \033[33m=>\033[0m \033[32m%s\033[0m www: %s" % (package, pacnet_version, pacman_version, url))
