@@ -4,18 +4,50 @@
 {% block content %}
 
 	<h1>{% trans "Categories"  %}</h1>
-	
-	<p><a href="/category/No/" title="{% trans "Category"  %}: No">{% trans "No category"  %}</a></p>
-	
-	<ul id="category_list">
-	{% for a in categories %}
-		{% if a.name != "No" %}
-			{% ifchanged %}
-				<li><h3>{{ a.section}}</h3></li>
-			{% endifchanged %}
-			<li class="cat"><a href="{{ a.get_absolute_url }}" title="{% trans "Category"  %}: {{ a.category }}">{{ a }}</a></li>
-		{% endif %}
-	{% endfor %}
-	</ul>
 
+	<div class="row">
+		<div class="span2">
+			<div class="well" style="padding: 8px 0">
+				<ul class="nav nav-list">
+					<li class="nav-header">
+						{% trans "Sections" %}
+					</li>
+					{% for a in categories %}
+						{% if a.name != "No" %}
+							{% ifchanged %}
+								<li>
+									<a href="#{{ a.section }}">{{ a.section }}</a>
+								</li>
+							{% endifchanged %}
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div class="span10">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><a href="/category/No/">{% trans "No category"  %}</a></td>
+						<td>{% trans "Packages without category"  %}</td>
+					</tr>
+					{% for a in categories %}
+						{% if a.name != "No" %}
+						{% ifchanged %}
+							<tr id="{{ a.section }}">
+								<td colspan="2"><h3>{{ a.section }}</h3></td>
+							</tr>
+						{% endifchanged %}
+						<tr>
+							<td><a href="{{ a.get_absolute_url }}" class="nowrap">{{ a }}</a></td>
+							<td>{{ a.description }}</td>
+						</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 {% endblock %}

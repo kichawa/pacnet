@@ -4,10 +4,15 @@
 {% block content %}
 
 	<h1><a href="{% url categories %}">{% trans "Categories"  %}</a> &raquo; {{ category.name }} [{{ count }}]</h1>
-	
+
 	<p id="change_category">
 		<a href="#" class="sprite-edit">{% trans "Edit mode"  %}</a>
 	</p>
+	
+	{% if category.description %}
+		<br/>
+		<div class="well">{{ category.description }}</div>
+	{% endif %}
 	
 	<p class="form-actions hide">
 		<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />

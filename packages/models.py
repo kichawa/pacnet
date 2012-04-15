@@ -11,6 +11,7 @@ class Category(models.Model):
 	""" Category model """
 	
 	name = models.CharField(max_length=20, verbose_name="Nazwa")
+	description = models.CharField(max_length=300, verbose_name="Opis", blank=True, null=True)
 	
 	def __unicode__(self):
 		return u"%s" % self.name
