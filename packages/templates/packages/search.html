@@ -1,16 +1,6 @@
 {% extends "main.html" %}
 {% load i18n %}
 
-{% block js %}
-<script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var search = $('#search_field').val();
-		$('#packages').highlight(search);
-	});
-</script>
-{% endblock %}
-
 {% block content %}
 
 	{% if len_error %}
@@ -63,10 +53,15 @@
 
 {% block js %}
 	{% if results %}
-		<script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
 		<script type="text/javascript">
+			$(function(){
+				var search = $('#search_field').val();
+				$('#packages').highlight(search);
+			});
 			var change_category_url = "{% url package-category-change %}";
 		</script>
+		<script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
 		<script src="{{ STATIC_URL }}js/change-category.js" type="text/javascript"></script>
 	{% endif %}
 {% endblock %}
