@@ -8,34 +8,36 @@
 	<p>The purpose of the Pacnet project is to categorize packages from Arch Linux repositories according to categories that Gentoo Portage uses. As for now, there are over 5000 packages from core, extra and community repositories (i686).</p>
 	<p>If you noticed, that some of packages are in the wrong category, feel free to change it. Packages were categorized by script that searched for each package on gentoo-portage.com website, so there could be some mistakes due to names incompatibility between Arch Linux and Gentoo.</p>
 	<p>I hope that with your help we'll put that in order, so the site could be useful for everyone.</p>
-	{% endblocktrans %}
-	
-	
+	{% endblocktrans %}<br/>
 	
 	{% if new %}
 	<h2>{% trans "New packages" %}</h2>
-	<dl class="package_list">
-		{% for p in new %}
-			<dt>
-				<a href="{{ p.get_absolute_url }}">{{ p.name }}</a>
-				[<a href="{{ p.cagtegory.get_absolute_url }}" class="category">{{ p.category }}</a>]
-			</dt>
-		<dd>{{ p.description }}</dd>
-		{% endfor %}
-	</dl>
-	<p><a href="{% url new-packages %}">{% trans "Full list" %} &raquo;</a></p>
+	<table class="table">
+		<tbody>
+			{% for p in new %}
+			<tr>
+				<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+				<td><a href="{{ p.cagtegory.get_absolute_url }}" class="category">{{ p.category }}</a></td>
+				<td>{{ p.description }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<p><a href="{% url new-packages %}" class="btn">{% trans "Full list" %} &raquo;</a></p><br/>
 	{% endif %}
 	
 	
 	<h2>{% trans "Do you know these packages?" %}</h2>
-	<dl class="package_list">
-		{% for p in random %}
-			<dt>
-				<a href="{{ p.get_absolute_url }}">{{ p.name }}</a>
-				[<a href="{{ p.cagtegory.get_absolute_url }}" class="category">{{ p.category }}</a>]
-			</dt>
-		<dd>{{ p.description }}</dd>
-		{% endfor %}
-	</dl>
+	<table class="table">
+		<tbody>
+			{% for p in random %}
+			<tr>
+				<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+				<td><a href="{{ p.cagtegory.get_absolute_url }}" class="category">{{ p.category }}</a></td>
+				<td>{{ p.description }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
