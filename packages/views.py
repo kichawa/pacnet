@@ -92,9 +92,11 @@ def change_category(request):
 def new_packages(request):
 	
 	packages = Package.objects.all().order_by('-id')[:30]
+	categories = Category.objects.all()
 	
 	return render_to_response('packages/new-packages.html', { 
-		'packages': packages
+		'packages': packages,
+		'categories': categories,
 	}, context_instance=RequestContext(request))
 
 
