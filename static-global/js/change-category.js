@@ -143,9 +143,7 @@ $(document).ready(function() {
 			var response = jQuery.parseJSON(data);
 			if (response['0'].status == "ok") {
 				$("#packages input:checked").each(function(){
-					$(this).parents('tr').fadeOut('slow', function() { 
-						$(this).remove(); 
-					});
+					$(this).parents('tr').remove();
 				});
 				packages = [];
 				$("#select-category .modal-body .alert").hide().siblings('table').show();
