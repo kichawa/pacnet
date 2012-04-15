@@ -46,11 +46,13 @@ def category(request, category_name):
 	
 	category = get_object_or_404(Category, name=category_name)
 	packages = Package.objects.filter(category=category).order_by('name')
+	categories = Category.objects.all()
 	
 	return render_to_response('packages/category.html', { 
 		'packages': packages,
 		'count': len(packages),
-		'category': category 
+		'category': category,
+		'categories': categories,
 	}, context_instance=RequestContext(request))
 
 
@@ -64,39 +66,27 @@ def package(request,package_name):
 	}, context_instance=RequestContext(request))
 
 
-def change_category(request,package_name):
+def change_category(request):
 	
-	package = get_object_or_404(Package,name=package_name)
-	category_from = package.category
-	if request.method == 'POST':
-		form = PackageCategoryForm(request.POST, instance=package)
+	if request.method == "POST":
+		category = get_object_or_404(Category, id=request.POST.get('category'))
+		packages = []
+		for a in request.POST.getlist('packages[]'):
+			packages.append(int(a))
+			package = Package.objects.get(id=int(a))
+			
+			history = PackageHistory(
+				package = package.name,
+				category_from = package.category,
+				category_to = category.name
+			)
+			history.save()
+			
+			package.category = category
+			package.save()
+		return HttpResponse('[{"status":"ok"}]', mimetype="text/javascript")
 		
-		if form.is_valid():
-			form.save()
-			try:
-				new_category = Category.objects.get(id=request.POST.get('category'))
-				history = PackageHistory(
-					package = package.name,
-					category_from = category_from,
-					category_to = new_category.name
-				)
-				history.save()
-			except:
-				pass
-			return HttpResponseRedirect('/package/%s/' % package_name)
-		else:
-			return render_to_response('packages/change-category.html', { 
-				'form': form,
-				'package': package
-			}, context_instance=RequestContext(request))
-	else:
-		
-		form = PackageCategoryForm(instance=package)
-		
-		return render_to_response('packages/change-category.html', { 
-			'form': form,
-			'package': package
-		}, context_instance=RequestContext(request))
+	return HttpResponse('[{"status":"error"}]', mimetype="text/javascript")
 
 
 def new_packages(request):

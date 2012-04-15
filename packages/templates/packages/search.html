@@ -1,25 +1,12 @@
 {% extends "main.html" %}
 {% load i18n %}
 
-{% block css %}
-<style type="text/css">
-#change_category {
-	position: relative;
-	top: -20px;
-}
-</style>
-{% endblock %}
-
 {% block js %}
 <script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".package_list small").hide();
-		$("#change_category a").click(function(){
-			$(".package_list small").toggle();
-		});
 		var search = $('#search_field').val();
-		$('dl').highlight(search);
+		$('table').highlight(search);
 	});
 </script>
 {% endblock %}
@@ -33,26 +20,24 @@
 	{% else %}
 	
 		<h1>{% trans "Search results" %}</h1>
-		<p id="change_category">
-			<a href="#" class="sprite-edit">{% trans "Change category" %}</a>
-		</p>
 		
 		
-		
+		<br/>
 		<h2 class="search">{% trans "Name" %}</h2>
 		
 		{% if result_name %}
-		
-			<dl class="package_list">
-				{% for p in result_name %}
-				<dt>
-					<a href="/package/{{ p.name }}/">{{ p.name }}</a> 
-					[<a href="/category/{{ p.category }}/" class="category">{{ p.category }}</a>]
-					<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
-				</dt>
-				<dd>{{ p.description }}</dd>
-				{% endfor %}
-			</dl>
+				
+			<table class="table table-striped">
+				<tbody>
+					{% for p in result_name %}
+					<tr>
+						<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+						<td><a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a></td>
+						<td>{{ p.description }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		
 		{% else %}
 		
@@ -66,23 +51,23 @@
 		
 		{% if result_description %}
 		
-			<dl class="package_list">
-				{% for p in result_description %}
-				<dt>
-					<a href="/package/{{ p.name }}/">{{ p.name }}</a> 
-					[<a href="/category/{{ p.category }}/" class="category">{{ p.category }}</a>]
-					<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
-				</dt>
-				<dd>{{ p.description }}</dd>
-				{% endfor %}
-			</dl>
+			<table class="table table-striped">
+				<tbody>
+					{% for p in result_description %}
+					<tr>
+						<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+						<td><a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a></td>
+						<td>{{ p.description }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 			
 		{% else %}
 		
 			<p>{% trans "Nothing found" %}</p>
 		
 		{% endif %}
-		
 		
 		
 	{% endif %}

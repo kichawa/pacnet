@@ -1,42 +1,183 @@
 {% extends "main.html" %}
 {% load i18n %}
 
-{% block css %}
-<style type="text/css">
-#change_category {
-	position: relative;
-	top: -20px;
-}
-</style>
+{% block content %}
+
+	<h1><a href="{% url categories %}">{% trans "Categories"  %}</a> &raquo; {{ category.name }} [{{ count }}]</h1>
+	
+	<p id="change_category">
+		<a href="#" class="sprite-edit">{% trans "Edit mode"  %}</a>
+	</p>
+	
+	<p class="form-actions hide">
+		<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
+	</p>
+		
+	<table class="table table-striped" id="packages">
+		<tbody>
+			{% for p in packages %}
+			<tr>
+				<td class="hide"><input type="checkbox" name="selected" data-id="{{ p.id }}" /></td>
+				<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+				<td>{{ p.description }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<p class="form-actions hide">
+		<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
+	</p>
+	
+	<div class="modal" id="select-category" style="display:none">
+	  <div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>{% trans "Select category" %}</h3>
+		<p><input type="text" id="category-filter" /></p>
+	  </div>
+	  <div class="modal-body">
+		
+		<table class="table">
+			<tbody>
+				{% for a in categories %}
+					<tr>
+						<td><a href="#" class="btn" data-id="{{ a.id }}">{{ a }}</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	  </div>
+	</div>
+
 {% endblock %}
 
 {% block js %}
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".package_list small").hide();
-		$("#change_category a").click(function(){
-			$(".package_list small").toggle();
-		});
+	<script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		
+	var packages = new Array();
+		
+	jQuery(document).ajaxSend(function(event, xhr, settings) {
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		function sameOrigin(url) {
+			// url could be relative or scheme relative or absolute
+			var host = document.location.host; // host + port
+			var protocol = document.location.protocol;
+			var sr_origin = '//' + host;
+			var origin = protocol + sr_origin;
+			// Allow absolute or scheme relative URLs to same origin
+			return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+				(url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+				// or any other URL that isn't scheme relative or absolute i.e relative.
+				!(/^(\/\/|http:|https:).*/.test(url));
+		}
+		function safeMethod(method) {
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+
+		if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+			xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+		}
 	});
-</script>
-{% endblock %}
-
-{% block content %}
-
-	<h1><a href="/category/">{% trans "Categories"  %}</a> &raquo; {{ category.name }} [{{ count }}]</h1>
-	
-	<p id="change_category">
-		<a href="#" class="sprite-edit">{% trans "Change category"  %}</a>
-	</p>
-	
-	<dl class="package_list">
-		{% for p in packages %}
-		<dt>
-			<a href="/package/{{ p.name }}/">{{ p.name }}</a>
-			<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
-		</dt>
-		<dd>{{ p.description }}</dd>
-		{% endfor %}
-	</dl>
-
+		
+		$(document).ready(function() {
+			
+			// switch to edit mode
+			$("#change_category a").click(function(){
+				if ( $(".hide").css('display') == "none" ) {
+					$(".hide").show();
+				} else {
+					$(".hide").hide();
+				}
+			});
+			
+			// category filter
+			$("#category-filter").keyup(function(){
+				var term = $(this).val().toLowerCase();
+				if(term != '') {
+					$('.modal-body table td').each(function(){
+						category = $(this).text().toLowerCase();
+						if(category.search(term) == -1) {
+							$(this).parent().fadeOut('slow');
+						} else {
+							if($(this).parent().css('display') == "none") {
+								$(this).parent().fadeIn('slow');
+							}
+						}
+					});
+				} else {
+					$('.modal-body table tbody tr').fadeIn('slow');
+				}
+			});
+			
+			// modal window trigger
+			$('.change-window-trigger').click(function(){
+				if(!$(this).hasClass('disabled')) {
+					$('#select-category').modal();
+					$('#category-filter').focus();
+				}
+				return false;
+			});
+			
+			// activing modal trigger button
+			$("#packages input").change(function(){
+				
+				id = $(this).data('id');
+				
+				if($(this).is(':checked')) {
+					$(this).parents('tr').addClass('selected');
+					packages.push(id);
+				} else {
+					$(this).parents('tr').removeClass('selected');
+					packages.splice( $.inArray(id, packages), 1 );
+				}
+				
+				if($("#packages input:checked").size() > 0) {
+					if($('.form-actions input').hasClass('disabled')) {
+						$('.form-actions input').removeClass('disabled');
+					}
+				} else {
+					if(!$('.form-actions input').hasClass('disabled')) {
+						$('.form-actions input').addClass('disabled');
+					}
+				}
+				
+				return false;
+			});
+			
+			// changing categry
+			$('.modal-body table a').click(function(){
+				category = $(this).data('id');
+				$.post("{% url package-category-change %}", { category: category, packages: packages }, function(data) {
+					var response = jQuery.parseJSON(data);
+					if (response['0'].status == "ok") {
+						$("#packages input:checked").each(function(){
+							$(this).parents('tr').fadeOut('slow', function() { 
+								$(this).remove(); 
+							});
+						});
+						packages = [];
+						$('#select-category').modal('hide');
+					} else {
+						alert('error');
+					}
+				});
+				return false;
+			});
+		});
+	</script>
 {% endblock %}

@@ -3,6 +3,7 @@
 from django.db import models
 from django import forms
 from django.contrib import admin
+from django.core.urlresolvers import reverse
 from django.conf import settings
 
 
@@ -15,7 +16,7 @@ class Category(models.Model):
 		return u"%s" % self.name
 		
 	def get_absolute_url(self):
-		return "%scategory/%s/" % (settings.SITE_URL, self.name)
+		return reverse('category', args=[self.name])
 	
 	class Meta:
 		verbose_name="Kategoria"
@@ -64,7 +65,7 @@ class Package(models.Model):
 		return u"%s" % self.name
 		
 	def get_absolute_url(self):
-		return "%spackage/%s/" % (settings.SITE_URL, self.name)
+		return reverse('package', args=[self.name])
 		
 	
 	class Meta:

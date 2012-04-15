@@ -11,9 +11,9 @@
 #archnavbar #anb-pacnet a { color: #FFF !important; }
 
 #submenu { height: 31px; background-color: #08c; line-height: 27px; }
-#submenu ul { margin: 0 0 0 20px; padding: 0; }
-#submenu ul li { margin: 0 20px 0 0; padding: 0; list-style: none; float: left; }
-#submenu ul li a { float; left; color: #FFF; text-decoration: none; font-weight: bold; }
+#submenu ul { height: 31px; margin: 0 0 0 20px; padding: 0; float: left; }
+#submenu ul li { height: 31px; margin: 0 20px 0 0; padding: 0; list-style: none; float: left; }
+#submenu ul li a { float; left; color: #FFF; text-decoration: none; font-weight: bold; line-height: 27px; }
 #submenu ul li a:hover { border-bottom: 1px solid #FFF; }
 #submenu #search { float: right; margin-right: 20px; }
 
@@ -22,9 +22,13 @@ a {	text-decoration: none; color: #1793D1; }
 h1 { font-size: 26px; line-height: 30px; }
 h2 { margin-top: 30px; }
 h2.search { padding-left: 10px; border-bottom: 1px solid #CCC; color: #F5BB04;}
+
+.hide { display: none; }
+.selected td { background: #FFFF6D !important; }
+#change_category { position: relative; top: -20px; }
 	
-#content {	margin: 20px 15%; }
-#content a:hover, #footer a:hover { color: #CC0000; text-decoration: underline; }
+.container { margin-top: 20px; }
+#footer a:hover { color: #CC0000; text-decoration: underline; }
 #footer { margin-top: 100px; text-align: center; line-height: 15px;}
 pre { background-color: #F9F9F9; border: 1px dashed #8FAECD; padding: 10px 15px; font-family: sans-serif;	letter-spacing: 1px; overflow: auto;}
 
