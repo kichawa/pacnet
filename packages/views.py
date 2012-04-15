@@ -73,17 +73,15 @@ def change_category(request):
 		packages = []
 		for a in request.POST.getlist('packages[]'):
 			packages.append(int(a))
-			package = Package.objects.get(id=int(a))
-			
+			package = Package.objects.select_related(depth=1).get(id=int(a))
 			history = PackageHistory(
 				package = package.name,
 				category_from = package.category,
 				category_to = category.name
 			)
 			history.save()
-			
-			package.category = category
-			package.save()
+		if packages:
+			Package.objects.filter(id__in=packages).update(category=category)
 		return HttpResponse('[{"status":"ok"}]', mimetype="text/javascript")
 		
 	return HttpResponse('[{"status":"error"}]', mimetype="text/javascript")
@@ -110,7 +108,7 @@ def package_search(request):
 			'search' : search
 			}, context_instance=RequestContext(request))
 		else:
-			results = Package.objects.filter(Q(name__icontains=search) | Q(description__icontains=search))
+			results = Package.objects.select_related(depth=1).filter(Q(name__icontains=search) | Q(description__icontains=search))
 			categories = Category.objects.all()
 			return render_to_response('packages/search.html', { 
 				'results': results,
