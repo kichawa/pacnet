@@ -110,12 +110,12 @@ def package_search(request):
 			'search' : search
 			}, context_instance=RequestContext(request))
 		else:
-			result_name = Package.objects.filter(name__icontains=search)
-			result_description = Package.objects.filter(description__icontains=search)
+			results = Package.objects.filter(Q(name__icontains=search) | Q(description__icontains=search))
+			categories = Category.objects.all()
 			return render_to_response('packages/search.html', { 
-				'result_name': result_name,
-				'result_description': result_description,
-				'search' : search
+				'results': results,
+				'search' : search,
+				'categories': categories,
 			}, context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')

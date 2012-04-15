@@ -86,7 +86,7 @@
 		<form action="/search/" method="post" id="search">
 			{% csrf_token %}
 			<input type="text" name="search" value="{{ search }}" id="search_field" />
-			<input type="submit" value="{% trans "Search" %}" />
+			<input type="submit" value="{% trans "Search" %}" class="btn" />
 		</form>
 		
 	</div>

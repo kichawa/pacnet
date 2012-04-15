@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var search = $('#search_field').val();
-		$('table').highlight(search);
+		$('#packages').highlight(search);
 	});
 </script>
 {% endblock %}
@@ -20,40 +20,21 @@
 	{% else %}
 	
 		<h1>{% trans "Search results" %}</h1>
-		
-		
 		<br/>
-		<h2 class="search">{% trans "Name" %}</h2>
 		
-		{% if result_name %}
+		{% if results %}
 				
-			<table class="table table-striped">
+			<p id="change_category">
+				<a href="#" class="sprite-edit">{% trans "Edit mode"  %}</a>
+			</p>
+			
+			<p class="form-actions hide">
+				<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
+			</p>
+				
+			<table class="table table-striped" id="packages">
 				<tbody>
-					{% for p in result_name %}
-					<tr>
-						<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
-						<td><a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a></td>
-						<td>{{ p.description }}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		
-		{% else %}
-		
-			<p>{% trans "Nothing found" %}</p>
-		
-		{% endif %}
-		
-		
-		
-		<h2 class="search">{% trans "Description" %}</h2>
-		
-		{% if result_description %}
-		
-			<table class="table table-striped">
-				<tbody>
-					{% for p in result_description %}
+					{% for p in results %}
 					<tr>
 						<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
 						<td><a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a></td>
@@ -63,13 +44,29 @@
 				</tbody>
 			</table>
 			
+			<p class="form-actions hide">
+				<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
+			</p>
+			
+			{% include "packages/change-category-modal.html" %}	
+		
 		{% else %}
 		
 			<p>{% trans "Nothing found" %}</p>
 		
 		{% endif %}
 		
-		
 	{% endif %}
 
+{% endblock %}
+
+
+{% block js %}
+	{% if results %}
+		<script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var change_category_url = "{% url package-category-change %}";
+		</script>
+		<script src="{{ STATIC_URL }}js/change-category.js" type="text/javascript"></script>
+	{% endif %}
 {% endblock %}

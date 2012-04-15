@@ -16,6 +16,7 @@
 #submenu ul li a { float; left; color: #FFF; text-decoration: none; font-weight: bold; line-height: 27px; }
 #submenu ul li a:hover { border-bottom: 1px solid #FFF; }
 #submenu #search { float: right; margin-right: 20px; }
+#submenu #search input { margin: -2px 0 0 0; }
 
 body {	font-size: 12px; margin: 0; background: #FFF url(../img/logo.png) 30px 5px no-repeat; color: #444; line-height: 22px; font-family: Verdana,sans-serif; }
 a {	text-decoration: none; color: #1793D1; }
@@ -24,7 +25,7 @@ h2 { margin-top: 30px; }
 h2.search { padding-left: 10px; border-bottom: 1px solid #CCC; color: #F5BB04;}
 
 .hide { display: none; }
-.selected td { background: #FFFF6D !important; }
+.selected td, .highlight { background: #FFFF6D !important; }
 #change_category { position: relative; top: -20px; }
 	
 .container { margin-top: 20px; }
