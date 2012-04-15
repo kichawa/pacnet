@@ -79,6 +79,7 @@ $(document).ready(function() {
 		} else {
 			$(".hide").hide();
 		}
+		return false;
 	});
 	
 	// category filter
