@@ -9,9 +9,7 @@
 		<a href="#" class="sprite-edit">{% trans "Edit mode"  %}</a>
 	</p>
 	
-	<p class="form-actions hide">
-		<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
-	</p>
+	{% include "packages/action-bar.html" %}
 		
 	<table class="table table-striped" id="packages">
 		<tbody>
@@ -26,9 +24,7 @@
 		</tbody>
 	</table>
 	
-	<p class="form-actions hide">
-		<input type="submit" name="" value="{% trans "Change category" %}" class="btn btn-danger disabled change-window-trigger" />
-	</p>
+	{% include "packages/action-bar.html" %}
 	
 	{% include "packages/change-category-modal.html" %}	
 
