@@ -26,38 +26,45 @@
 {% block content %}
 
 	<h1>
-		<a href="/category/">{% trans "Categories"  %}</a> &raquo; 
-		<a href="/category/{{ package.category }}">{{ package.category }}</a> &raquo; 
+		<a href="{% url categories %}">{% trans "Categories"  %}</a> &raquo; 
+		<a href="{{ package.category.get_absolute_url }}">{{ package.category }}</a> &raquo; 
 		{{ package.name }}
 	</h1>
 	
-	<p id="change_category">
-		<a href="/package/{{ package.name }}/change-category/" class="sprite-edit">{% trans "Change category"  %}</a>
-	</p>
-	
-	<h2>{% trans "Description" %}</h2>
-	<p>{{ package.description }}</p>
-	
-	<h2>{% trans "Version" %}</h2>
-	<p>{{ package.version }}</p>
-	{% if package.changelog %}
-		<p><a href="{{ package.changelog }}">{% trans "See changelog" %}</a></p>
-	{% endif %}
-	
-	{% if package.www %}
-		<h2>{% trans "Homepage" %}</h2>
-		<p><a href="{{ package.www }}">{{ package.www }}</a></p>
-	{% endif %}
+	<br/>
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<th>{% trans "Description" %}</th>
+				<td>{{ package.description }}</td>
+			</tr>
+			<tr>
+				<th>{% trans "Version" %}</th>
+				<td>{{ package.version }}</td>
+			</tr>
+			{% if package.changelog %}
+			<tr>
+				<th>{% trans "Changelog" %}</th>
+				<td><a href="{{ package.changelog }}">{{ package.changelog }}</a></td>
+			</tr>
+			{% endif %}
+			<tr>
+				<th>{% trans "Homepage" %}</th>
+				<td><a href="{{ package.www }}">{{ package.www }}</a></td>
+			</tr>
+		</tbody>
+	</table>
 	
 	<h2>{% trans "Install" %}</h2>
 	<p><pre><code># pacman -S {{ package.name }}</code></pre></p>
+	<br/>
 	
 	<h2>{% trans "Screenshots" %}</h2>
     <div id="imgSearchControl" class="search-control">Loading...</div>
     <!--Remove all floating-->
     <div class="clear"></div>
     <!--Image will be shown here-->
-    <div id='imageContainer'></div>
+    <div id='imageContainer'></div><br/>
 	
 	<h2>{% trans "Comments" %}</h2>
 	<div id="disqus_thread"></div>

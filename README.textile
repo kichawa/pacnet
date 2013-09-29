@@ -35,12 +35,12 @@ h2. Requirements
 
 h2. Screenshots
 
+List of new packages
+!http://farm8.staticflickr.com/7113/6935393604_6342d91d03_m.jpg!:http://farm8.staticflickr.com/7113/6935393604_6342d91d03_b.jpg
+
+Moving packages
+!http://farm8.staticflickr.com/7103/6935402134_e4f0c898a3_m.jpg!:http://farm8.staticflickr.com/7103/6935402134_e4f0c898a3_b.jpg
+
 List of categories
-!http://farm6.static.flickr.com/5114/5812322529_f5e7c017ea_m.jpg!:http://farm6.static.flickr.com/5114/5812322529_f5e7c017ea_b.jpg
-
-List of packages in category
-!http://farm3.static.flickr.com/2504/5812326487_74c2a511dc_m.jpg!:http://farm3.static.flickr.com/2504/5812326487_74c2a511dc_b.jpg
-
-Package details
-!http://farm6.static.flickr.com/5028/5812330487_1f2d5f9f83_m.jpg!:http://farm6.static.flickr.com/5028/5812330487_1f2d5f9f83_b.jpg
+!http://farm6.staticflickr.com/5155/6935425396_f2d688eac1_m.jpg!:http://farm6.staticflickr.com/5155/6935425396_f2d688eac1_b.jpg
 

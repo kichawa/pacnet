@@ -46,11 +46,13 @@ def category(request, category_name):
 	
 	category = get_object_or_404(Category, name=category_name)
 	packages = Package.objects.filter(category=category).order_by('name')
+	categories = Category.objects.all()
 	
 	return render_to_response('packages/category.html', { 
 		'packages': packages,
 		'count': len(packages),
-		'category': category 
+		'category': category,
+		'categories': categories,
 	}, context_instance=RequestContext(request))
 
 
@@ -64,47 +66,35 @@ def package(request,package_name):
 	}, context_instance=RequestContext(request))
 
 
-def change_category(request,package_name):
+def change_category(request):
 	
-	package = get_object_or_404(Package,name=package_name)
-	category_from = package.category
-	if request.method == 'POST':
-		form = PackageCategoryForm(request.POST, instance=package)
+	if request.method == "POST":
+		category = get_object_or_404(Category, id=request.POST.get('category'))
+		packages = []
+		for a in request.POST.getlist('packages[]'):
+			packages.append(int(a))
+			package = Package.objects.select_related(depth=1).get(id=int(a))
+			history = PackageHistory(
+				package = package.name,
+				category_from = package.category,
+				category_to = category.name
+			)
+			history.save()
+		if packages:
+			Package.objects.filter(id__in=packages).update(category=category)
+		return HttpResponse('[{"status":"ok"}]', mimetype="text/javascript")
 		
-		if form.is_valid():
-			form.save()
-			try:
-				new_category = Category.objects.get(id=request.POST.get('category'))
-				history = PackageHistory(
-					package = package.name,
-					category_from = category_from,
-					category_to = new_category.name
-				)
-				history.save()
-			except:
-				pass
-			return HttpResponseRedirect('/package/%s/' % package_name)
-		else:
-			return render_to_response('packages/change-category.html', { 
-				'form': form,
-				'package': package
-			}, context_instance=RequestContext(request))
-	else:
-		
-		form = PackageCategoryForm(instance=package)
-		
-		return render_to_response('packages/change-category.html', { 
-			'form': form,
-			'package': package
-		}, context_instance=RequestContext(request))
+	return HttpResponse('[{"status":"error"}]', mimetype="text/javascript")
 
 
 def new_packages(request):
 	
 	packages = Package.objects.all().order_by('-id')[:30]
+	categories = Category.objects.all()
 	
 	return render_to_response('packages/new-packages.html', { 
-		'packages': packages
+		'packages': packages,
+		'categories': categories,
 	}, context_instance=RequestContext(request))
 
 
@@ -118,12 +108,12 @@ def package_search(request):
 			'search' : search
 			}, context_instance=RequestContext(request))
 		else:
-			result_name = Package.objects.filter(name__icontains=search)
-			result_description = Package.objects.filter(description__icontains=search)
+			results = Package.objects.select_related(depth=1).filter(Q(name__icontains=search) | Q(description__icontains=search))
+			categories = Category.objects.all()
 			return render_to_response('packages/search.html', { 
-				'result_name': result_name,
-				'result_description': result_description,
-				'search' : search
+				'results': results,
+				'search' : search,
+				'categories': categories,
 			}, context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')
@@ -157,8 +147,9 @@ def api_to_sync(request):
 
 def api_categories(request):
 	
-	data = Category.objects.all().order_by('name')
-	json = serializers.serialize("json", data)
+	data = Category.objects.all().order_by('name').values('name')
+	data = list(data)
+	json = simplejson.dumps(data)
 	
 	return HttpResponse(json, mimetype="text/javascript")
 	

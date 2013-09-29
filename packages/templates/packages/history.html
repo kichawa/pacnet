@@ -5,20 +5,38 @@
 
 	<h1>{% trans "History"  %}</h1>
 	
-	{% for h in object_list %}
-		{% ifchanged %}<h2>{{ h.insert_time|date:"d.m.Y" }}</h2>{% endifchanged %}
-		<p class="package_list">
-			<a href="/package/{{ h.package }}/">{{ h.package }}</a> 
-			[<a href="/category/{{ h.category_from }}" class="category">{{ h.category_from }}</a> &raquo; <a href="/category/{{ h.category_to }}" class="category">{{ h.category_to }}</a>]
-		</p>
-	{% endfor %}
+	<table class="table">
+		<tbody>
+			{% for h in object_list %}
+				<tr>
+					<td style="width:120px">{% ifchanged %}<strong>{{ h.insert_time|date:"d.m.Y" }}</strong>{% endifchanged %} </td>
+					<td>
+						<a href="{% url package h.package %}">{{ h.package }}</a>
+						[<a href="{% url category h.category_from %}" class="category">{{ h.category_from }}</a> 
+						&raquo; <a href="{% url category h.category_to %}" class="category">{{ h.category_to }}</a>]
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-	{% for page in page_range %}
-		{% ifequal current_page page %}
-			<strong>{{ page }}</strong>
-		{% else %}
-			<a href="/history/?page={{ page }}">{{ page }}</a>
-		{% endifequal %}
-	{% endfor %}
-	
+
+{% if is_paginated %}
+	<div class="pagination">
+		<ul>
+		{% if has_previous %}
+			<li><a href="?page={{ previous }}" class="previous">&larr;</a></li>
+		{% endif %}
+
+		{% for p in page_range %}
+			<li{% if p == page %} class="active{% endif %}"><a href="?page={{ p }}" >{{ p }}</a></li>
+		{% endfor %}
+		
+		{% if has_next %}
+			<li><a href="?page={{ next }}" class="next">&rarr;</a></li>
+		{% endif %}
+		</ul>
+	</div>
+{% endif %}
+
 {% endblock %}

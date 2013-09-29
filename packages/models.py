@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django import forms
-from django.contrib import admin
+from django.core.urlresolvers import reverse
 from django.conf import settings
 
 
@@ -10,29 +9,18 @@ class Category(models.Model):
 	""" Category model """
 	
 	name = models.CharField(max_length=20, verbose_name="Nazwa")
+	description = models.CharField(max_length=300, verbose_name="Opis", blank=True, null=True)
 	
 	def __unicode__(self):
 		return u"%s" % self.name
 		
 	def get_absolute_url(self):
-		return "%scategory/%s/" % (settings.SITE_URL, self.name)
+		return reverse('category', args=[self.name])
 	
 	class Meta:
 		verbose_name="Kategoria"
 		verbose_name_plural="Kategorie"
 		ordering = ['name']
-		
-class CategoryForm(forms.ModelForm):	
-	class Meta:
-		model=Category
-		
-class CategoryAdmin(admin.ModelAdmin):
-	list_display = ('name',)
-	search_fields = ['name',]
-	ordering = ['name']
-
-admin.site.register(Category, CategoryAdmin)
-
 
 
 class Package(models.Model):
@@ -64,7 +52,7 @@ class Package(models.Model):
 		return u"%s" % self.name
 		
 	def get_absolute_url(self):
-		return "%spackage/%s/" % (settings.SITE_URL, self.name)
+		return reverse('package', args=[self.name])
 		
 	
 	class Meta:
@@ -72,23 +60,6 @@ class Package(models.Model):
 		verbose_name_plural="Packages"
 		ordering = ('name',)
 		
-class PackageForm(forms.ModelForm):	
-	class Meta:
-		model=Package
-		
-class PackageCategoryForm(forms.ModelForm):	
-	class Meta:
-		model=Package
-		exclude = ('name','version','www','changelog','description','arch','repo','insert_time','update_time')
-		
-class PackageAdmin(admin.ModelAdmin):
-	list_display = ('name','category')
-	search_fields = ['name','category']
-	list_filter = ['category']
-	ordering = ['name']
-
-admin.site.register(Package, PackageAdmin)
-
 
 class PackageHistory(models.Model):
 	""" History of category edit """
@@ -104,10 +75,4 @@ class PackageHistory(models.Model):
 	class Meta:
 		verbose_name="Package history"
 		verbose_name_plural="Packages history"
-		
-class PackageHistoryAdmin(admin.ModelAdmin):
-	list_display = ('package','category_from','category_to','insert_time')
-	search_fields = ['package','category_form','category_to']
-	ordering = ['-insert_time']
 
-admin.site.register(PackageHistory, PackageHistoryAdmin)

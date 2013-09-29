@@ -1,6 +1,6 @@
 {% load i18n %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -19,6 +19,7 @@
 		
 		<link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
 		<link href="{{ STATIC_URL }}css/main.css" rel="stylesheet" type="text/css" media="screen" />
+		<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen" />
 		{% block css %}{% endblock %}
 		
 		<script type="text/javascript">
@@ -85,19 +86,12 @@
 		<form action="/search/" method="post" id="search">
 			{% csrf_token %}
 			<input type="text" name="search" value="{{ search }}" id="search_field" />
-			<input type="submit" value="{% trans "Search" %}" />
+			<input type="submit" value="{% trans "Search" %}" class="btn" />
 		</form>
 		
 	</div>
 	
-
-	<div id="top">
-	
-
-	
-	</div>
-	
-	<div id="content">
+	<div class="container">
 
 	{% block content %}{% endblock %}
 	
@@ -109,7 +103,7 @@
 		<p><a href="http://megiteam.pl/"><img src="http://farm3.static.flickr.com/2528/5765660639_1a4a25a240_t.jpg" alt="MegiTeam" title="MegiTeam" style="border:0" /></a></p>
 	</div>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	{% block js %}{% endblock %}
 
 </body>

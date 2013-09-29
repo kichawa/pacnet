@@ -1,29 +1,6 @@
 {% extends "main.html" %}
 {% load i18n %}
 
-{% block css %}
-<style type="text/css">
-#change_category {
-	position: relative;
-	top: -20px;
-}
-</style>
-{% endblock %}
-
-{% block js %}
-<script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".package_list small").hide();
-		$("#change_category a").click(function(){
-			$(".package_list small").toggle();
-		});
-		var search = $('#search_field').val();
-		$('dl').highlight(search);
-	});
-</script>
-{% endblock %}
-
 {% block content %}
 
 	{% if len_error %}
@@ -33,58 +10,55 @@
 	{% else %}
 	
 		<h1>{% trans "Search results" %}</h1>
-		<p id="change_category">
-			<a href="#" class="sprite-edit">{% trans "Change category" %}</a>
-		</p>
+		<br/>
 		
-		
-		
-		<h2 class="search">{% trans "Name" %}</h2>
-		
-		{% if result_name %}
-		
-			<dl class="package_list">
-				{% for p in result_name %}
-				<dt>
-					<a href="/package/{{ p.name }}/">{{ p.name }}</a> 
-					[<a href="/category/{{ p.category }}/" class="category">{{ p.category }}</a>]
-					<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
-				</dt>
-				<dd>{{ p.description }}</dd>
-				{% endfor %}
-			</dl>
-		
-		{% else %}
-		
-			<p>{% trans "Nothing found" %}</p>
-		
-		{% endif %}
-		
-		
-		
-		<h2 class="search">{% trans "Description" %}</h2>
-		
-		{% if result_description %}
-		
-			<dl class="package_list">
-				{% for p in result_description %}
-				<dt>
-					<a href="/package/{{ p.name }}/">{{ p.name }}</a> 
-					[<a href="/category/{{ p.category }}/" class="category">{{ p.category }}</a>]
-					<small>| <a href="/package/{{ p.name }}/change-category/">{% trans "Change category"  %}</a></small>
-				</dt>
-				<dd>{{ p.description }}</dd>
-				{% endfor %}
-			</dl>
+		{% if results %}
+				
+			<p id="change_category">
+				<a href="#" class="sprite-edit" accesskey="E" title="accesskey = E">{% trans "Edit mode"  %}</a>
+			</p>
 			
+			{% include "packages/action-bar.html" %}
+				
+			<table class="table table-striped" id="packages">
+				<tbody>
+					{% for p in results %}
+					<tr>
+						<td class="hide"><input type="checkbox" name="selected" data-id="{{ p.id }}" /></td>
+						<td><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></td>
+						<td><a href="{{ p.category.get_absolute_url }}">{{ p.category }}</a></td>
+						<td>{{ p.description }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
+			{% include "packages/action-bar.html" %}
+			
+			{% include "packages/change-category-modal.html" %}	
+		
 		{% else %}
 		
 			<p>{% trans "Nothing found" %}</p>
 		
 		{% endif %}
-		
-		
 		
 	{% endif %}
 
+{% endblock %}
+
+
+{% block js %}
+	{% if results %}
+		<script type="text/javascript" src="/site_media/js/jquery.highlight.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var search = $('#search_field').val();
+				$('#packages').highlight(search);
+			});
+			var change_category_url = "{% url package-category-change %}";
+		</script>
+		<script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
+		<script src="{{ STATIC_URL }}js/change-category.js" type="text/javascript"></script>
+	{% endif %}
 {% endblock %}

@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="modal" id="select-category" style="display:none">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>{% trans "Select category" %}</h3>
+		<p><input type="text" id="category-filter" /></p>
+	</div>
+	<div class="modal-body">
+		<div class="alert alert-info" style="display:none">
+			{% trans "Saving data" %}...
+		</div>
+		<table class="table">
+			<tbody>
+				{% for a in categories %}
+					<tr>
+						<td><a href="#" class="btn" data-id="{{ a.id }}">{{ a }}</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>

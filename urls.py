@@ -20,8 +20,8 @@ urlpatterns = patterns('',
     url(r'^category/$', 'packages.views.categories', name='categories'),
 	url(r'^category/(?P<category_name>[a-zA-Z0-9-]+)/$', 'packages.views.category', name='category'),
 	
-	url(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/$', 'packages.views.package', name='package'),
-	url(r'^package/(?P<package_name>[a-zA-Z0-9._+-]+)/change-category/$', 'packages.views.change_category', name='package-category-change'),
+	url(r'^package/(?P<package_name>[a-zA-Z0-9._+-@]+)/$', 'packages.views.package', name='package'),
+	url(r'^change-category/$', 'packages.views.change_category', name='package-category-change'),
 	
 	url(r'^new-packages/$', 'packages.views.new_packages', name='new-packages'),
 	
@@ -31,8 +31,8 @@ urlpatterns = patterns('',
 	(r'^api/categories/', 'packages.views.api_categories'),
 	(r'^api/packages/', 'packages.views.api_packages'),
 	(r'^api/category/(?P<category_name>[a-zA-Z0-9-]+)/$', 'packages.views.api_category'),
-	(r'^api/package/(?P<package_name>[a-zA-Z0-9-]+)/$', 'packages.views.api_package'),
-	(r'^api/search/(?P<search>[a-zA-Z0-9-]+)/$', 'packages.views.api_search'),
+	(r'^api/package/(?P<package_name>[a-zA-Z0-9-@]+)/$', 'packages.views.api_package'),
+	(r'^api/search/(?P<search>[a-zA-Z0-9-@]+)/$', 'packages.views.api_search'),
 	(r'^api/$', 'packages.views.api'),
     
     (r'^/?$', 'packages.views.main_page'),
